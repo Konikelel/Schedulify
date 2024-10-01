@@ -13,29 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4e0e3a5-4a80-41f3-8905-a86748372159" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/Schedulify.API_ dev.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.run/Schedulify.API_ prod.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Net.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.API/Controllers/ScheduleController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.API/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.API/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.API/Schedulify.API.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.API/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/DbConnectionFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateCalendarsTable.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateCategoriesTable.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateSchedulesTable.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateUsersTable.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Repositories/ScheduleRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/ServiceCollectionExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Services/ScheduleService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +24,7 @@
     <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/17993a905313a55997ad6a9e8c3758f890b8d9d9ef16f887128f11ad973827de/DbConnectionOptions.Common.cs" root0="FORCE_HIGHLIGHTING" />
@@ -97,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727787563976</updated>
-      <workItem from="1727787565779" duration="17407000" />
+      <workItem from="1727787565779" duration="18033000" />
     </task>
     <servers />
   </component>
