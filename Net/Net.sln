@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.API", "Schedulify.API\Schedulify.API.csproj", "{67314339-E198-4BE0-95A4-B199B7106665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.App", "Schedulify.App\Schedulify.App.csproj", "{CD548100-3DEF-4F88-8359-A9FF75D99200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.Contracts", "Schedulify.Contracts\Schedulify.Contracts.csproj", "{554372C1-8473-4C7C-971A-BE19A4976194}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67314339-E198-4BE0-95A4-B199B7106665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67314339-E198-4BE0-95A4-B199B7106665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67314339-E198-4BE0-95A4-B199B7106665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67314339-E198-4BE0-95A4-B199B7106665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD548100-3DEF-4F88-8359-A9FF75D99200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD548100-3DEF-4F88-8359-A9FF75D99200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD548100-3DEF-4F88-8359-A9FF75D99200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD548100-3DEF-4F88-8359-A9FF75D99200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554372C1-8473-4C7C-971A-BE19A4976194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554372C1-8473-4C7C-971A-BE19A4976194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554372C1-8473-4C7C-971A-BE19A4976194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554372C1-8473-4C7C-971A-BE19A4976194}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

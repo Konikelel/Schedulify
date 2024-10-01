@@ -1,0 +1,7 @@
+riderModule.iml
+
+bin/
+obj/
+
+Net/packages/
+Net/_ReSharper.Caches/
