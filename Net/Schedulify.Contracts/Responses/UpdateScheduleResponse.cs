@@ -1,4 +1,6 @@
-﻿namespace Schedulify.Contracts.Responses;
+﻿using Schedulify.App.Enums;
+
+namespace Schedulify.Contracts.Responses;
 
 public class UpdateScheduleResponses
 {
@@ -11,6 +13,8 @@ public class UpdateScheduleResponses
     public required DateTimeOffset TimeStart { get; init; }
     
     public required DateTimeOffset TimeEnd { get; init; }
+    
+    public required FrequencyEnum Frequency { get; init; }
     
     public required string Title { get; init; }
     

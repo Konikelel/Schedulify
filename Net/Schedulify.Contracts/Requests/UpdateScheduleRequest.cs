@@ -1,4 +1,6 @@
-﻿namespace Schedulify.Contracts.Requests;
+﻿using Schedulify.App.Enums;
+
+namespace Schedulify.Contracts.Requests;
 
 public class UpdateScheduleRequest
 {
@@ -10,9 +12,13 @@ public class UpdateScheduleRequest
     
     public required DateTimeOffset TimeEnd { get; init; }
     
+    public required FrequencyEnum Frequency { get; init; }
+    
     public required string Title { get; init; }
     
     public required string Description { get; init; }
     
     public string? Link { get; init; }
+    
+    public Guid? AuthorId { get; init; }
 }

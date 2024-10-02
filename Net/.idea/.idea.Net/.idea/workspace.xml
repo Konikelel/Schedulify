@@ -13,25 +13,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4e0e3a5-4a80-41f3-8905-a86748372159" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableFrequencyType.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CalendarEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CategoryEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/UserEntity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Enums/FrequencyEnum.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/dataSources/8d329b53-c8d8-4d43-b74f-38fb84175603.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/dataSources/8d329b53-c8d8-4d43-b74f-38fb84175603.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateCalendarRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCategories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCategories.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableSchedules.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableSchedules.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableUsers.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableUsers.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Schedulify.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Schedulify.Contracts.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
