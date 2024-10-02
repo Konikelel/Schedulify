@@ -18,9 +18,9 @@ public class UpdateScheduleResponses
     
     public string? Link { get; init; }
     
-    public required DateTimeOffset CreatedAt { get; set; }
+    public required DateTimeOffset CreatedAt { get; init; }
     
-    public required DateTimeOffset UpdatedAt { get; set; }
+    public required DateTimeOffset UpdatedAt { get; init; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid AuthorId { get; init; }
 }
