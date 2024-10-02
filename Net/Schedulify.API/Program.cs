@@ -1,5 +1,4 @@
 using Schedulify.App;
-using Schedulify.App.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -21,7 +20,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
-var temp = config["Database:ConnectionString"];
 builder.Services.AddDatabase(config["Database:ConnectionString"]!);
 
 var app = builder.Build();
