@@ -13,13 +13,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4e0e3a5-4a80-41f3-8905-a86748372159" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateCalendarRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CalendarRequests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CategoryRequests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/ScheduleRequests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CalendarResponses.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CategoryResponses.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/ScheduleResponses.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Schedulify.Contracts.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Schedulify.Contracts.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/CategoryEntity.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/UserEntity.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CreateScheduleRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

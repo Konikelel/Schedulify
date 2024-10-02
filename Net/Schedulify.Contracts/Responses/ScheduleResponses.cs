@@ -22,9 +22,9 @@ public class CreateScheduleResponses
     
     public string? Link { get; init; }
     
-    public required DateTimeOffset CreatedAt { get; init; }
-    
-    public required DateTimeOffset UpdatedAt { get; init; }
-    
     public required Guid AuthorId { get; init; }
 }
+
+public class UpdateScheduleResponses: CreateScheduleResponses { }
+
+public class GetScheduleResponse: CreateScheduleResponses { }
