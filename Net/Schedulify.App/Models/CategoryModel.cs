@@ -6,9 +6,5 @@ public class CategoryModel
     
     public required string Name { get; set; }
     
-    public required DateTimeOffset CreatedAt { get; set; }
-    
-    public required DateTimeOffset UpdatedAt { get; set; }
-    
     public required Guid AuthorId { get; set; }
 }

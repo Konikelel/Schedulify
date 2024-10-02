@@ -16908,17 +16908,17 @@
       <ObjectId>4</ObjectId>
     </schema>
     <table id="5580" parent="5577" name="Calendars">
-      <CreatedTimestamp>2024-10-01.22:44:52.770</CreatedTimestamp>
+      <CreatedTimestamp>2024-10-02.21:57:07.090</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-10-01.22:44:52.770</ModifiedTimestamp>
-      <ObjectId>1285579618</ObjectId>
+      <ModifiedTimestamp>2024-10-02.21:57:07.090</ModifiedTimestamp>
+      <ObjectId>1957582012</ObjectId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
     <table id="5581" parent="5577" name="Categories">
-      <CreatedTimestamp>2024-10-01.22:44:46.860</CreatedTimestamp>
+      <CreatedTimestamp>2024-10-02.21:57:09.717</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-10-01.22:44:46.860</ModifiedTimestamp>
-      <ObjectId>1237579447</ObjectId>
+      <ModifiedTimestamp>2024-10-02.21:57:09.717</ModifiedTimestamp>
+      <ObjectId>2037582297</ObjectId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
     <table id="5582" parent="5577" name="FrequencyType">
@@ -16929,17 +16929,17 @@
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
     <table id="5583" parent="5577" name="Schedules">
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
-      <ObjectId>1797581442</ObjectId>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <ObjectId>2117582582</ObjectId>
       <LobDataSpaceId>1</LobDataSpaceId>
     </table>
     <table id="5584" parent="5577" name="Users">
-      <CreatedTimestamp>2024-10-01.22:44:35.493</CreatedTimestamp>
+      <CreatedTimestamp>2024-10-02.21:57:02.427</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-10-01.22:44:35.493</ModifiedTimestamp>
-      <ObjectId>1205579333</ObjectId>
+      <ModifiedTimestamp>2024-10-02.21:57:02.427</ModifiedTimestamp>
+      <ObjectId>1893581784</ObjectId>
       <LobDataSpaceId>1</LobDataSpaceId>
     </table>
     <column id="5585" parent="5580" name="Id">
@@ -16956,27 +16956,45 @@
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>1989582126</DefaultConstraintId>
+      <DefaultConstraintName>DF__Calendars__Creat__76969D2E</DefaultConstraintName>
     </column>
     <column id="5588" parent="5580" name="UpdatedAt">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>2005582183</DefaultConstraintId>
+      <DefaultConstraintName>DF__Calendars__Updat__778AC167</DefaultConstraintName>
     </column>
     <column id="5589" parent="5580" name="Author">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <foreign-key id="5590" parent="5580" name="FK_CalendarsAuthor">
+    <default id="5590" parent="5580" name="DF__Calendars__Creat__76969D2E">
+      <ColNames>CreatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:07.090</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>1989582126</ObjectId>
+    </default>
+    <default id="5591" parent="5580" name="DF__Calendars__Updat__778AC167">
+      <ColNames>UpdatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:07.090</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>2005582183</ObjectId>
+    </default>
+    <foreign-key id="5592" parent="5580" name="FK_CalendarsAuthor">
       <ColNames>Author</ColNames>
-      <CreatedTimestamp>2024-10-01.22:44:52.770</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-01.22:44:52.770</ModifiedTimestamp>
-      <ObjectId>1317579732</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:07.090</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:07.090</ModifiedTimestamp>
+      <ObjectId>2021582240</ObjectId>
       <RefColNames>Id</RefColNames>
-      <RefTableId>1205579333</RefTableId>
+      <RefTableId>1893581784</RefTableId>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <index id="5591" parent="5580" name="PK__Calendar__3214EC0791B0D5E2">
+    <index id="5593" parent="5580" name="PK__Calendar__3214EC07B9A93A7F">
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -16984,49 +17002,67 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5592" parent="5580" name="PK__Calendar__3214EC0791B0D5E2">
-      <CreatedTimestamp>2024-10-01.22:44:52.770</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-01.22:44:52.770</ModifiedTimestamp>
+    <key id="5594" parent="5580" name="PK__Calendar__3214EC07B9A93A7F">
+      <CreatedTimestamp>2024-10-02.21:57:07.090</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:07.090</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>1301579675</ObjectId>
+      <ObjectId>1973582069</ObjectId>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PK__Calendar__3214EC0791B0D5E2</UnderlyingIndexName>
+      <UnderlyingIndexName>PK__Calendar__3214EC07B9A93A7F</UnderlyingIndexName>
     </key>
-    <column id="5593" parent="5581" name="Id">
+    <column id="5595" parent="5581" name="Id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5594" parent="5581" name="Name">
+    <column id="5596" parent="5581" name="Name">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(64 char)|0s</StoredType>
     </column>
-    <column id="5595" parent="5581" name="CreatedAt">
+    <column id="5597" parent="5581" name="CreatedAt">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>2069582411</DefaultConstraintId>
+      <DefaultConstraintName>DF__Categorie__Creat__7B5B524B</DefaultConstraintName>
     </column>
-    <column id="5596" parent="5581" name="UpdatedAt">
+    <column id="5598" parent="5581" name="UpdatedAt">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>2085582468</DefaultConstraintId>
+      <DefaultConstraintName>DF__Categorie__Updat__7C4F7684</DefaultConstraintName>
     </column>
-    <column id="5597" parent="5581" name="Author">
+    <column id="5599" parent="5581" name="Author">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <foreign-key id="5598" parent="5581" name="FK_CategoriesAuthor">
+    <default id="5600" parent="5581" name="DF__Categorie__Creat__7B5B524B">
+      <ColNames>CreatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:09.717</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>2069582411</ObjectId>
+    </default>
+    <default id="5601" parent="5581" name="DF__Categorie__Updat__7C4F7684">
+      <ColNames>UpdatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:09.717</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>2085582468</ObjectId>
+    </default>
+    <foreign-key id="5602" parent="5581" name="FK_CategoriesAuthor">
       <ColNames>Author</ColNames>
-      <CreatedTimestamp>2024-10-01.22:44:46.860</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-01.22:44:46.860</ModifiedTimestamp>
-      <ObjectId>1269579561</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:09.717</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:09.717</ModifiedTimestamp>
+      <ObjectId>2101582525</ObjectId>
       <RefColNames>Id</RefColNames>
-      <RefTableId>1205579333</RefTableId>
+      <RefTableId>1893581784</RefTableId>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <index id="5599" parent="5581" name="PK__Categori__3214EC0715F0A795">
+    <index id="5603" parent="5581" name="PK__Categori__3214EC07A1E78742">
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -17034,30 +17070,30 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5600" parent="5581" name="PK__Categori__3214EC0715F0A795">
-      <CreatedTimestamp>2024-10-01.22:44:46.860</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-01.22:44:46.860</ModifiedTimestamp>
+    <key id="5604" parent="5581" name="PK__Categori__3214EC07A1E78742">
+      <CreatedTimestamp>2024-10-02.21:57:09.717</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:09.717</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>1253579504</ObjectId>
+      <ObjectId>2053582354</ObjectId>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PK__Categori__3214EC0715F0A795</UnderlyingIndexName>
+      <UnderlyingIndexName>PK__Categori__3214EC07A1E78742</UnderlyingIndexName>
     </key>
-    <column id="5601" parent="5582" name="Id">
+    <column id="5605" parent="5582" name="Id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5602" parent="5582" name="Value">
+    <column id="5606" parent="5582" name="Value">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="5603" parent="5582" name="Name">
+    <column id="5607" parent="5582" name="Name">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>nvarchar(64 char)|0s</StoredType>
     </column>
-    <index id="5604" parent="5582" name="PK__Frequenc__3214EC0728E69C3B">
+    <index id="5608" parent="5582" name="PK__Frequenc__3214EC0728E69C3B">
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -17065,14 +17101,14 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <index id="5605" parent="5582" name="UQ__Frequenc__07D9BBC2471AB68F">
+    <index id="5609" parent="5582" name="UQ__Frequenc__07D9BBC2471AB68F">
       <ColNames>Value</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Position>2</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5606" parent="5582" name="PK__Frequenc__3214EC0728E69C3B">
+    <key id="5610" parent="5582" name="PK__Frequenc__3214EC0728E69C3B">
       <CreatedTimestamp>2024-10-02.19:42:14.650</CreatedTimestamp>
       <ModifiedTimestamp>2024-10-02.19:42:14.650</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -17080,109 +17116,127 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Frequenc__3214EC0728E69C3B</UnderlyingIndexName>
     </key>
-    <key id="5607" parent="5582" name="UQ__Frequenc__07D9BBC2471AB68F">
+    <key id="5611" parent="5582" name="UQ__Frequenc__07D9BBC2471AB68F">
       <CreatedTimestamp>2024-10-02.19:42:14.650</CreatedTimestamp>
       <ModifiedTimestamp>2024-10-02.19:42:14.650</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1781581385</ObjectId>
       <UnderlyingIndexName>UQ__Frequenc__07D9BBC2471AB68F</UnderlyingIndexName>
     </key>
-    <column id="5608" parent="5583" name="Id">
+    <column id="5612" parent="5583" name="Id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5609" parent="5583" name="CalendarId">
+    <column id="5613" parent="5583" name="CalendarId">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5610" parent="5583" name="CategoryId">
+    <column id="5614" parent="5583" name="CategoryId">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5611" parent="5583" name="TimeStart">
+    <column id="5615" parent="5583" name="TimeStart">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>datetimeoffset|0s</StoredType>
     </column>
-    <column id="5612" parent="5583" name="TimeEnd">
+    <column id="5616" parent="5583" name="TimeEnd">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>datetimeoffset|0s</StoredType>
     </column>
-    <column id="5613" parent="5583" name="Frequency">
+    <column id="5617" parent="5583" name="Frequency">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="5614" parent="5583" name="Title">
+    <column id="5618" parent="5583" name="Title">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>nvarchar(64 char)|0s</StoredType>
     </column>
-    <column id="5615" parent="5583" name="Description">
+    <column id="5619" parent="5583" name="Description">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
-    <column id="5616" parent="5583" name="Link">
+    <column id="5620" parent="5583" name="Link">
       <Position>9</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
-    <column id="5617" parent="5583" name="CreatedAt">
+    <column id="5621" parent="5583" name="CreatedAt">
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>2099048</DefaultConstraintId>
+      <DefaultConstraintName>DF__Schedules__Creat__00200768</DefaultConstraintName>
     </column>
-    <column id="5618" parent="5583" name="UpdatedAt">
+    <column id="5622" parent="5583" name="UpdatedAt">
       <NotNull>1</NotNull>
       <Position>11</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>18099105</DefaultConstraintId>
+      <DefaultConstraintName>DF__Schedules__Updat__01142BA1</DefaultConstraintName>
     </column>
-    <column id="5619" parent="5583" name="Author">
+    <column id="5623" parent="5583" name="Author">
       <NotNull>1</NotNull>
       <Position>12</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <foreign-key id="5620" parent="5583" name="FK_SchedulesCalendar">
+    <default id="5624" parent="5583" name="DF__Schedules__Creat__00200768">
+      <ColNames>CreatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>2099048</ObjectId>
+    </default>
+    <default id="5625" parent="5583" name="DF__Schedules__Updat__01142BA1">
+      <ColNames>UpdatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>18099105</ObjectId>
+    </default>
+    <foreign-key id="5626" parent="5583" name="FK_SchedulesCalendar">
       <ColNames>CalendarId</ColNames>
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
-      <ObjectId>1845581613</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <ObjectId>50099219</ObjectId>
       <RefColNames>Id</RefColNames>
-      <RefTableId>1285579618</RefTableId>
+      <RefTableId>1957582012</RefTableId>
       <RefTableName>Calendars</RefTableName>
     </foreign-key>
-    <foreign-key id="5621" parent="5583" name="FK_SchedulesCategory">
+    <foreign-key id="5627" parent="5583" name="FK_SchedulesCategory">
       <ColNames>CategoryId</ColNames>
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
-      <ObjectId>1861581670</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <ObjectId>66099276</ObjectId>
       <RefColNames>Id</RefColNames>
-      <RefTableId>1237579447</RefTableId>
+      <RefTableId>2037582297</RefTableId>
       <RefTableName>Categories</RefTableName>
     </foreign-key>
-    <foreign-key id="5622" parent="5583" name="FK_SchedulesFrequencyType">
+    <foreign-key id="5628" parent="5583" name="FK_SchedulesFrequencyType">
       <ColNames>Frequency</ColNames>
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
-      <ObjectId>1877581727</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <ObjectId>82099333</ObjectId>
       <RefColNames>Value</RefColNames>
       <RefTableId>1749581271</RefTableId>
       <RefTableName>FrequencyType</RefTableName>
     </foreign-key>
-    <foreign-key id="5623" parent="5583" name="FK_SchedulesAuthor">
+    <foreign-key id="5629" parent="5583" name="FK_SchedulesAuthor">
       <ColNames>Author</ColNames>
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
-      <ObjectId>1829581556</ObjectId>
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
+      <ObjectId>34099162</ObjectId>
       <RefColNames>Id</RefColNames>
-      <RefTableId>1205579333</RefTableId>
+      <RefTableId>1893581784</RefTableId>
       <RefTableName>Users</RefTableName>
     </foreign-key>
-    <index id="5624" parent="5583" name="PK__Schedule__3214EC07087DECAB">
+    <index id="5630" parent="5583" name="PK__Schedule__3214EC074CE42CBB">
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -17190,54 +17244,72 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5625" parent="5583" name="PK__Schedule__3214EC07087DECAB">
-      <CreatedTimestamp>2024-10-02.19:42:26.307</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-02.19:42:26.307</ModifiedTimestamp>
+    <key id="5631" parent="5583" name="PK__Schedule__3214EC074CE42CBB">
+      <CreatedTimestamp>2024-10-02.21:57:13.377</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:13.377</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>1813581499</ObjectId>
+      <ObjectId>2133582639</ObjectId>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PK__Schedule__3214EC07087DECAB</UnderlyingIndexName>
+      <UnderlyingIndexName>PK__Schedule__3214EC074CE42CBB</UnderlyingIndexName>
     </key>
-    <column id="5626" parent="5584" name="Id">
+    <column id="5632" parent="5584" name="Id">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
-    <column id="5627" parent="5584" name="Username">
+    <column id="5633" parent="5584" name="Username">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(64 char)|0s</StoredType>
     </column>
-    <column id="5628" parent="5584" name="Email">
+    <column id="5634" parent="5584" name="Email">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>nvarchar(64 char)|0s</StoredType>
     </column>
-    <column id="5629" parent="5584" name="ImageUrl">
+    <column id="5635" parent="5584" name="ImageUrl">
       <Position>4</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
-    <column id="5630" parent="5584" name="PasswordHash">
+    <column id="5636" parent="5584" name="PasswordHash">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>varbinary(64 char)|0s</StoredType>
     </column>
-    <column id="5631" parent="5584" name="PasswordSalt">
+    <column id="5637" parent="5584" name="PasswordSalt">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>varbinary(128 char)|0s</StoredType>
     </column>
-    <column id="5632" parent="5584" name="CreatedAt">
+    <column id="5638" parent="5584" name="CreatedAt">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>1925581898</DefaultConstraintId>
+      <DefaultConstraintName>DF__Users__CreatedAt__72C60C4A</DefaultConstraintName>
     </column>
-    <column id="5633" parent="5584" name="UpdatedAt">
+    <column id="5639" parent="5584" name="UpdatedAt">
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>datetimeoffset|0s</StoredType>
+      <DefaultConstraintId>1941581955</DefaultConstraintId>
+      <DefaultConstraintName>DF__Users__UpdatedAt__73BA3083</DefaultConstraintName>
     </column>
-    <index id="5634" parent="5584" name="PK__Users__3214EC075056DA35">
+    <default id="5640" parent="5584" name="DF__Users__CreatedAt__72C60C4A">
+      <ColNames>CreatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:02.430</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>1925581898</ObjectId>
+    </default>
+    <default id="5641" parent="5584" name="DF__Users__UpdatedAt__73BA3083">
+      <ColNames>UpdatedAt</ColNames>
+      <DefaultExpression>sysdatetimeoffset()</DefaultExpression>
+      <ModifiedTimestamp>2024-10-02.21:57:02.430</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>1941581955</ObjectId>
+    </default>
+    <index id="5642" parent="5584" name="PK__Users__3214EC07F893669D">
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -17245,13 +17317,13 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5635" parent="5584" name="PK__Users__3214EC075056DA35">
-      <CreatedTimestamp>2024-10-01.22:44:35.500</CreatedTimestamp>
-      <ModifiedTimestamp>2024-10-01.22:44:35.500</ModifiedTimestamp>
+    <key id="5643" parent="5584" name="PK__Users__3214EC07F893669D">
+      <CreatedTimestamp>2024-10-02.21:57:02.430</CreatedTimestamp>
+      <ModifiedTimestamp>2024-10-02.21:57:02.430</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>1221579390</ObjectId>
+      <ObjectId>1909581841</ObjectId>
       <Primary>1</Primary>
-      <UnderlyingIndexName>PK__Users__3214EC075056DA35</UnderlyingIndexName>
+      <UnderlyingIndexName>PK__Users__3214EC07F893669D</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

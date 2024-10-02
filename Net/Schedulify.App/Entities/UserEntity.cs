@@ -1,6 +1,6 @@
-﻿namespace Schedulify.App.Models;
+﻿namespace Schedulify.App.Entities;
 
-public class UserModel
+public class UserEntity
 {
     public required Guid Id { get; init; }
     
@@ -13,4 +13,8 @@ public class UserModel
     public required byte[] PasswordHash { get; set; }
     
     public required byte[] PasswordSalt { get; set; }
+
+    public DateTimeOffset? CreatedAt { get; init; }
+    
+    public DateTimeOffset? UpdatedAt { get; init; }
 }

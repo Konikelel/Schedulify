@@ -6,10 +6,6 @@ public class CalendarModel
     
     public required string Name { get; set; }
     
-    public required DateTimeOffset CreatedAt { get; set; }
-    
-    public required DateTimeOffset UpdatedAt { get; set; }
-    
     public required Guid AuthorId { get; set; }
     
     public required IEnumerable<CategoryModel> Categories { get; set; }

@@ -13,6 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4e0e3a5-4a80-41f3-8905-a86748372159" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CalendarRequests.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/CategoryRequests.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Schedulify.Contracts/Requests/ScheduleRequests.cs" afterDir="false" />
@@ -29,6 +30,18 @@
       <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Requests/UpdateScheduleRequest.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/CalendarEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CalendarEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/CategoryEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CategoryEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/UserEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/UserEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/UserModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/UserModel.cs" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
