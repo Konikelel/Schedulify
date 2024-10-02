@@ -14,7 +14,7 @@ public class UserEntity
     
     public required byte[] PasswordSalt { get; set; }
 
-    public DateTimeOffset? CreatedAt { get; init; }
+    public DateTimeOffset CreatedAt { get; init; }
     
-    public DateTimeOffset? UpdatedAt { get; init; }
+    public DateTimeOffset UpdatedAt { get; set; }
 }

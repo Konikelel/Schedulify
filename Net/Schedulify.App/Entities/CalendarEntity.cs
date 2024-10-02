@@ -6,9 +6,9 @@ public class CalendarEntity
     
     public required string Name { get; set; }
 
-    public DateTimeOffset? CreatedAt { get; init; }
+    public required DateTimeOffset CreatedAt { get; init; }
 
-    public DateTimeOffset? UpdatedAt { get; init; }
+    public required DateTimeOffset UpdatedAt { get; set; }
     
     public required Guid AuthorId { get; set; }
 }
