@@ -1,4 +1,6 @@
-﻿namespace Schedulify.App.Entities;
+﻿using Schedulify.App.Enums;
+
+namespace Schedulify.App.Entities;
 
 public class ScheduleEntity
 {
@@ -11,6 +13,8 @@ public class ScheduleEntity
     public required DateTimeOffset TimeStart { get; set; }
     
     public required DateTimeOffset TimeEnd { get; set; }
+    
+    public required FrequencyEnum Frequency { get; set; }
     
     public required string Title { get; set; }
     

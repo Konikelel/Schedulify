@@ -1,4 +1,6 @@
-﻿namespace Schedulify.App.Models;
+﻿using Schedulify.App.Enums;
+
+namespace Schedulify.App.Models;
 
 public class ScheduleModel
 {
@@ -10,7 +12,9 @@ public class ScheduleModel
     
     public required DateTimeOffset TimeStart { get; set; }
     
-    public required DateTimeOffset TimeEnd { get; set; }
+    public required DateTimeOffset TimeEnd { get; set; }    
+    
+    public required FrequencyEnum Frequency { get; set; }
     
     public required string Title { get; set; }
     
