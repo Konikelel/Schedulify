@@ -13,5 +13,5 @@ public class UpdateCategoryRequest
     
     public required string Name { get; init; }
     
-    public Guid AuthorId { get; init; }
+    public required Guid AuthorId { get; init; }
 }

@@ -43,5 +43,5 @@ public class UpdateScheduleRequest
     
     public string? Link { get; init; }
     
-    public Guid AuthorId { get; init; }
+    public required Guid AuthorId { get; init; }
 }
