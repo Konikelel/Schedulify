@@ -13,10 +13,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4e0e3a5-4a80-41f3-8905-a86748372159" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableFrequencyType.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CalendarEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/CategoryEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Entities/UserEntity.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Enums/FrequencyEnum.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Models/CalendarModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Schedulify.App/Models/CategoryModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/dataSources/8d329b53-c8d8-4d43-b74f-38fb84175603.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/dataSources/8d329b53-c8d8-4d43-b74f-38fb84175603.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Net/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.API/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedulify.API/appsettings.json_template" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.API/appsettings.json_template" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCalendars.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCategories.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableCategories.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableSchedules.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableSchedules.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableUsers.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTableUsers.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Entities/ScheduleEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.App/Models/ScheduleModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/CreateScheduleResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulify.Contracts/Responses/UpdateScheduleResponse.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,26 +59,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Schedulify.API: dev.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\Wiktor\\AppData\\Roaming\\npm\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Schedulify.API: dev.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\Wiktor\\AppData\\Roaming\\npm\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlserver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Schedulify.API: dev">
     <list>
       <item itemvalue=".NET Launch Settings Profile.Schedulify.API: dev" />
