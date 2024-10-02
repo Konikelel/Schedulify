@@ -23,4 +23,12 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Mappings\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="appsettings.json" />
+    </ItemGroup>
+
 </Project>
