@@ -19,8 +19,6 @@ public class CreateScheduleRequest
     public required string Description { get; init; }
     
     public string? Link { get; init; }
-    
-    public Guid? AuthorId { get; init; }
 }
 
 public class UpdateScheduleRequest
@@ -42,6 +40,4 @@ public class UpdateScheduleRequest
     public required string Description { get; init; }
     
     public string? Link { get; init; }
-    
-    public required Guid AuthorId { get; init; }
 }

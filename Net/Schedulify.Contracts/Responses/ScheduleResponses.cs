@@ -21,8 +21,6 @@ public class CreateScheduleResponses
     public required string Description { get; init; }
     
     public string? Link { get; init; }
-    
-    public required Guid AuthorId { get; init; }
 }
 
 public class UpdateScheduleResponses: CreateScheduleResponses { }
