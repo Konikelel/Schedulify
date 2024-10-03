@@ -1,3 +1,4 @@
+using Schedulify.API;
 using Schedulify.App;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication();
 builder.Services.AddDatabase(config["Database:ConnectionString"]!);
+builder.Services.AddMapper();
 
 var app = builder.Build();
 
