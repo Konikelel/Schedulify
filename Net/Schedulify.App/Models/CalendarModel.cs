@@ -6,9 +6,9 @@ public class CalendarModel
     
     public required string Name { get; set; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid OwnerId { get; set; }
     
-    public required IEnumerable<CategoryModel> Categories { get; set; }
+    public IEnumerable<CategoryModel> Categories { get; set; } = Enumerable.Empty<CategoryModel>();
     
-    public required IEnumerable<ScheduleModel> Schedules { get; set; }
+    public IEnumerable<ScheduleModel> Schedules { get; set; } = Enumerable.Empty<ScheduleModel>();
 }

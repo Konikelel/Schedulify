@@ -10,5 +10,5 @@ public class CalendarEntity
 
     public required DateTimeOffset UpdatedAt { get; set; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid OwnerId { get; set; }
 }

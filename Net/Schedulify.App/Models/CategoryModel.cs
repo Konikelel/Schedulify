@@ -6,5 +6,5 @@ public class CategoryModel
     
     public required string Name { get; set; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid OwnerId { get; set; }
 }

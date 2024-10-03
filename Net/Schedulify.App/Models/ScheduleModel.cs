@@ -22,5 +22,5 @@ public class ScheduleModel
     
     public string? Link { get; set; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid OwnerId { get; set; }
 }

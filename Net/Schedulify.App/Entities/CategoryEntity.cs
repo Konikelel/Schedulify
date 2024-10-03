@@ -1,6 +1,6 @@
 ﻿namespace Schedulify.App.Entities;
 
-public class CategoryEnum
+public class CategoryEntity
 {
     public required Guid Id { get; init; }
     
@@ -10,5 +10,5 @@ public class CategoryEnum
     
     public required DateTimeOffset UpdatedAt { get; set; }
     
-    public required Guid AuthorId { get; set; }
+    public required Guid OwnerId { get; set; }
 }
