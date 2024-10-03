@@ -1,8 +1,0 @@
-riderModule.iml
-appsettings.json
-
-bin/
-obj/
-
-Net/packages/
-Net/_ReSharper.Caches/
