@@ -22,5 +22,9 @@ public class ScheduleModel
     
     public string? Link { get; set; }
     
+    public required DateTimeOffset CreatedAt { get; init; }
+
+    public required DateTimeOffset UpdatedAt { get; set; }
+    
     public required Guid OwnerId { get; set; }
 }
