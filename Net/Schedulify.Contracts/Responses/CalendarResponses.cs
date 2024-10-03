@@ -9,7 +9,7 @@ public class CreateCalendarResponse
     public required string Name { get; init; }
 }
 
-public class UpdateCalendarResponse: CreateCalendarResponse { }
+public class UpdateCalendarResponse: CreateCalendarResponse;
 
 public class GetCalendarResponse: CreateCalendarResponse
 {

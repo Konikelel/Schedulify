@@ -23,6 +23,6 @@ public class CreateScheduleResponses
     public string? Link { get; init; }
 }
 
-public class UpdateScheduleResponses: CreateScheduleResponses { }
+public class UpdateScheduleResponses: CreateScheduleResponses;
 
-public class GetScheduleResponse: CreateScheduleResponses { }
+public class GetScheduleResponse: CreateScheduleResponses;

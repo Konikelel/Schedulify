@@ -1,3 +1,3 @@
 namespace Schedulify.App;
 
-public interface IAppMarker { }
+public interface IAppMarker;

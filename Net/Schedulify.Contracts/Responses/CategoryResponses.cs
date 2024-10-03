@@ -7,6 +7,6 @@ public class CreateCategoryResponse
     public required string Name { get; init; }
 }
 
-public class UpdateCategoryResponse: CreateCategoryResponse { }
+public class UpdateCategoryResponse: CreateCategoryResponse;
 
-public class GetCategoryResponse: CreateCalendarResponse { }
+public class GetCategoryResponse: CreateCalendarResponse;
