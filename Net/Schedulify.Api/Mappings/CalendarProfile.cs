@@ -5,7 +5,7 @@ using Schedulify.App.Models;
 using Schedulify.Contracts.Requests;
 using Schedulify.Contracts.Responses;
 
-namespace Schedulify.API.Mappings;
+namespace Schedulify.Apis.Mappings;
 
 public class CalendarProfile: Profile
 {

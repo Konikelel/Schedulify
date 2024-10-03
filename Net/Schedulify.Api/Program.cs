@@ -1,4 +1,4 @@
-using Schedulify.API;
+using Schedulify.Apis;
 using Schedulify.App;
 
 var builder = WebApplication.CreateBuilder(args);

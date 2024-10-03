@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.API", "Schedulify.API\Schedulify.API.csproj", "{67314339-E198-4BE0-95A4-B199B7106665}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.Api", "Schedulify.Api\Schedulify.Api.csproj", "{67314339-E198-4BE0-95A4-B199B7106665}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.App", "Schedulify.App\Schedulify.App.csproj", "{CD548100-3DEF-4F88-8359-A9FF75D99200}"
 EndProject

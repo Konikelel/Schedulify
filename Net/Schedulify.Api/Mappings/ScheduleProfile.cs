@@ -5,23 +5,23 @@ using Schedulify.App.Models;
 using Schedulify.Contracts.Requests;
 using Schedulify.Contracts.Responses;
 
-namespace Schedulify.API.Mappings;
+namespace Schedulify.Apis.Mappings;
 
-public class CategoryProfile: Profile
+public class ScheduleProfile: Profile
 {
-    public CategoryProfile()
+    public ScheduleProfile()
     {
-        CreateMap<CreateCategoryRequest, CreateCategoryDto>()
+        CreateMap<CreateScheduleRequest, CreateScheduleDto>()
             .ForMemberNewGuid(desc => desc.Id)
             .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
 
-        CreateMap<UpdateCategoryRequest, UpdateCategoryDto>()
+        CreateMap<UpdateScheduleRequest, UpdateScheduleDto>()
             .ForMemberNewGuid(desc => desc.Id);
         
-        CreateMap<CategoryEntity, CategoryModel>()
+        CreateMap<ScheduleEntity, ScheduleModel>()
             .ReverseMap(); // MODEL NOT EXTENDED
-
-        CreateMap<CategoryModel, CreateCategoryResponse>();
-        CreateMap<CategoryModel, UpdateCategoryResponse>();
+        
+        CreateMap<ScheduleModel, CreateScheduleResponses>();
+        CreateMap<ScheduleModel, UpdateScheduleRequest>();
     }
 }
