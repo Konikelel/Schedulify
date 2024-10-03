@@ -11,13 +11,9 @@ public class CreateCalendarResponse
 
 public class UpdateCalendarResponse: CreateCalendarResponse { }
 
-public class GetCalendarResponse
+public class GetCalendarResponse: CreateCalendarResponse
 {
-    public required Guid Id { get; init; }
+    public required IEnumerable<CategoryModel> Categories { get; init; }
     
-    public required string Name { get; set; }
-    
-    public required IEnumerable<CategoryModel> Categories { get; set; }
-    
-    public required IEnumerable<ScheduleModel> Schedules { get; set; }
+    public required IEnumerable<ScheduleModel> Schedules { get; init; }
 }
