@@ -1,6 +1,9 @@
 using Schedulify.Apis;
 using Schedulify.App;
 
+Console.WriteLine("Starting API...");
+Console.WriteLine("Building the application...");
+
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
@@ -26,6 +29,9 @@ builder.Services.AddMapper();
 
 var app = builder.Build();
 
+Console.WriteLine("Application built successfully!");
+Console.WriteLine("Configuring the application...");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -44,5 +50,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+Console.WriteLine("API started successfully!");
 
 app.Run();
