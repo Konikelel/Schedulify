@@ -9,7 +9,7 @@
     "ConnectionString": "Server=#,#;User Id=#;Password=#;Database=#;TrustServerCertificate=true;MultipleActiveResultSets=true"
   },
   "Cors": {
-    "AllowedOrigins": "http://localhost:4200",
+    "AllowedOrigins": "#",
     "AllowedHeaders": ["Content-Type", "Authorization"],
     "AllowedMethods": ["GET", "POST", "PUT", "DELETE"]
   },
