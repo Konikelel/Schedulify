@@ -1,6 +1,6 @@
 namespace Schedulify.App.Dtos;
 
-public class CreateCalendarDto
+public abstract class CalendarBaseDto
 {
     public required Guid Id { get; init; }
     
@@ -9,4 +9,6 @@ public class CreateCalendarDto
     public required Guid OwnerId { get; set; }
 }
 
-public class UpdateCalendarDto: CreateCalendarDto;
+public class CreateCalendarDto: CalendarBaseDto;
+
+public class UpdateCalendarDto: CalendarBaseDto;

@@ -5,9 +5,7 @@ public class CreateCalendarRequest
     public required string Name { get; init; }
 }
 
-public class UpdateCalendarRequest
+public class UpdateCalendarRequest: CreateCalendarRequest
 {
     public required Guid Id { get; init; }
-    
-    public required string Name { get; init; }
 }

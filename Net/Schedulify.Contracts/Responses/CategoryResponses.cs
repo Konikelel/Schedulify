@@ -1,12 +1,14 @@
 ﻿namespace Schedulify.Contracts.Responses;
 
-public class CreateCategoryResponse
+public abstract class CategoryBaseResponse
 {
     public required Guid Id { get; init; }
     
     public required string Name { get; init; }
 }
 
-public class UpdateCategoryResponse: CreateCategoryResponse;
+public class CreateCategoryResponse : CategoryBaseResponse;
 
-public class GetCategoryResponse: CreateCalendarResponse;
+public class UpdateCategoryResponse: CategoryBaseResponse;
+
+public class GetCategoryResponse: CategoryBaseResponse;

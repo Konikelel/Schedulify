@@ -5,9 +5,7 @@ public class CreateCategoryRequest
     public required string Name { get; init; }
 }
 
-public class UpdateCategoryRequest
+public class UpdateCategoryRequest: CreateCategoryRequest
 {
     public required Guid Id { get; init; }
-    
-    public required string Name { get; init; }
 }
