@@ -5,12 +5,12 @@ namespace Schedulify.App.Attributes;
 [AttributeUsage(AttributeTargets.Interface, AllowMultiple = false)]
 public class InjectableAttribute: Attribute
 {
-    public readonly Type InterfaceDefinition;
+    public readonly Type Implementation;
     public readonly InjectableTypeEnum InjectableType;
     
-    public InjectableAttribute(InjectableTypeEnum injectableType, Type instanceDefinition)
+    public InjectableAttribute(InjectableTypeEnum injectableType, Type implementation)
     {
         this.InjectableType = injectableType;
-        this.InterfaceDefinition = instanceDefinition;
+        this.Implementation = implementation;
     }
 }
