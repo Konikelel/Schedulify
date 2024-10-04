@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using AutoMapper;
 
-namespace Schedulify.Apis.Mappings;
+namespace Schedulify.Api;
 
 public static class MapperExtensions
 {

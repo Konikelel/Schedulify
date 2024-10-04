@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using AutoMapper;
 
-namespace Schedulify.Apis;
+namespace Schedulify.Api;
 
 public static class ServiceCollectionExtensions
 {

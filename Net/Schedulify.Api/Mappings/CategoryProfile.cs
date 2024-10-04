@@ -5,7 +5,7 @@ using Schedulify.App.Models;
 using Schedulify.Contracts.Requests;
 using Schedulify.Contracts.Responses;
 
-namespace Schedulify.Apis.Mappings;
+namespace Schedulify.Api.Mappings;
 
 public class CategoryProfile: Profile
 {

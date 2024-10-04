@@ -1,4 +1,4 @@
-﻿namespace Schedulify.Apis.Controllers;
+﻿namespace Schedulify.Api.Controllers;
 
 public class ScheduleController
 {

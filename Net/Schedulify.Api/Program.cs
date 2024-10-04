@@ -1,4 +1,4 @@
-using Schedulify.Apis;
+using Schedulify.Api;
 using Schedulify.App;
 
 Console.WriteLine("Starting API...");
