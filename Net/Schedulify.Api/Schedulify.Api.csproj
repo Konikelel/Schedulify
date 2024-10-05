@@ -29,4 +29,8 @@
       <None Include="appsettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
 </Project>

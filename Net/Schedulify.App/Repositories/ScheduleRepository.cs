@@ -1,7 +1,10 @@
-﻿using Schedulify.App.Entities;
+﻿using Schedulify.App.Attributes;
+using Schedulify.App.Entities;
+using Schedulify.App.Enums;
 
 namespace Schedulify.App.Repositories;
 
+[Injectable(InjectableTypeEnum.Singleton, typeof(ScheduleRepository))]
 public interface IScheduleRepository
 {
     public Task<bool> ExistsByIdAsync(Guid id, CancellationToken token = default);
