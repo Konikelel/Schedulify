@@ -6,25 +6,25 @@ public class ScheduleEntity
 {
     public required Guid Id { get; init; }
     
-    public required Guid CalendarId { get; set; }
+    public required Guid CalendarId { get; init; }
     
-    public required Guid CategoryId { get; set; }
+    public required Guid CategoryId { get; init; }
     
-    public required DateTimeOffset TimeStart { get; set; }
+    public required DateTimeOffset TimeStart { get; init; }
     
-    public required DateTimeOffset TimeEnd { get; set; }
+    public required DateTimeOffset TimeEnd { get; init; }
     
-    public required FrequencyEnum Frequency { get; set; }
+    public required FrequencyEnum Frequency { get; init; }
     
-    public required string Title { get; set; }
+    public required string Title { get; init; }
     
-    public required string Description { get; set; }
+    public required string Description { get; init; }
 
-    public string? Link { get; set; }
+    public string? Link { get; init; }
 
     public required DateTimeOffset CreatedAt { get; init; }
     
-    public required DateTimeOffset UpdatedAt { get; set; }
+    public required DateTimeOffset UpdatedAt { get; init; }
     
-    public required Guid OwnerId { get; set; }
+    public required Guid OwnerId { get; init; }
 }
