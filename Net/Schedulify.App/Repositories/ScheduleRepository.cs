@@ -21,7 +21,11 @@ public interface IScheduleRepository
     
     public Task<bool> UpdateAsync(ScheduleEntity schedule, CancellationToken token = default);
     
+    public Task<bool> UpdateCategoryIdAsync(Guid id, Guid newId, CancellationToken token = default);
+    
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
+    
+    public Task<bool> DeleteByCalendarIdAsync(Guid id, CancellationToken token = default);
 }
 
 public class ScheduleRepository : IScheduleRepository
@@ -62,8 +66,18 @@ public class ScheduleRepository : IScheduleRepository
     {
         return true;
     }
+    
+    public async Task<bool> UpdateCategoryIdAsync(Guid id, Guid newId, CancellationToken token = default)
+    {
+        return true;
+    }
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
+    {
+        return true;
+    }
+    
+    public async Task<bool> DeleteByCalendarIdAsync(Guid id, CancellationToken token = default)
     {
         return true;
     }
