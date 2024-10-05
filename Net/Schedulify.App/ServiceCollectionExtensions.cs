@@ -41,7 +41,7 @@ public static class ServiceCollectionExtensions
                         break;
                     
                     default:
-                        throw new Exception("InjectableType not int enum");
+                        throw new Exception("InjectableType not in enum");
                 }
             }
         }
