@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
                 {
                     throw new ArgumentException($"Implementation ({injectableAttr.Implementation.Name}) in injectableAttribute must be a type of class");
                 }
-                if (!injectableAttr.Implementation.IsAssignableFrom(type))
+                if (!type.IsAssignableFrom(injectableAttr.Implementation))
                 {
                     throw new ArgumentException($"{injectableAttr.Implementation.Name} cannot implement {type.Name}");
                 }
