@@ -16,7 +16,7 @@ public class ScheduleProfile: Profile
             .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
 
         CreateMap<UpdateScheduleRequest, UpdateScheduleDto>()
-            .ForMemberNewGuid(desc => desc.Id);
+            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
         
         CreateMap<ScheduleEntity, ScheduleModel>()
             .ReverseMap(); // MODEL NOT EXTENDED

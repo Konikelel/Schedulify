@@ -16,7 +16,7 @@ public class CategoryProfile: Profile
             .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
 
         CreateMap<UpdateCategoryRequest, UpdateCategoryDto>()
-            .ForMemberNewGuid(desc => desc.Id);
+            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
         
         CreateMap<CategoryEntity, CategoryModel>()
             .ReverseMap(); // MODEL NOT EXTENDED
