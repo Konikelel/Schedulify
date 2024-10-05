@@ -16,7 +16,7 @@ public class ScheduleProfile: Profile
             .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
 
         CreateMap<UpdateScheduleRequest, UpdateScheduleDto>()
-            .ForMemberNewGuid(desc => desc.UpdatedAt)
+            .ForMemberDateTimeOffsetNow(desc => desc.UpdatedAt)
             .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
         
         CreateMap<ScheduleEntity, ScheduleModel>()
