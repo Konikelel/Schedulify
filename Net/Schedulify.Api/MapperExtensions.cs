@@ -30,4 +30,11 @@ public static class MapperExtensions
     {
         return expr.ForMember(dest, opt => opt.MapFrom(_ => Guid.NewGuid()));
     }
+    
+    public static IMappingExpression<TSource, TDestination> ForMemberDateTimeOffsetNow<TSource, TDestination, TMember>(
+        this IMappingExpression<TSource, TDestination> expr,
+        Expression<Func<TDestination, TMember>> dest)
+    {
+        return expr.ForMember(dest, opt => opt.MapFrom(_ => DateTimeOffset.Now));
+    }
 }

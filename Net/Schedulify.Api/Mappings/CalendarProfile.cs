@@ -16,7 +16,8 @@ public class CalendarProfile: Profile
             .ForMemberNewGuid(desc => desc.Id);
 
         CreateMap<UpdateCalendarRequest, UpdateCalendarDto>()
-            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
+            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId")
+            .ForMemberNewGuid(desc => desc.UpdatedAt);
         
         CreateMap<CalendarModel, CategoryEntity>(); //MODEL EXTENDED
         

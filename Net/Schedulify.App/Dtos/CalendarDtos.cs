@@ -11,4 +11,7 @@ public abstract class CalendarBaseDto
 
 public class CreateCalendarDto: CalendarBaseDto;
 
-public class UpdateCalendarDto: CalendarBaseDto;
+public class UpdateCalendarDto : CalendarBaseDto
+{
+    public required DateTimeOffset UpdatedAt { get; set; }
+}

@@ -15,4 +15,7 @@ public abstract class UserBaseDtos
 
 public class CreateUserDto: UserBaseDtos;
 
-public class UpdateUserDto: UserBaseDtos;
+public class UpdateUserDto: UserBaseDtos
+{
+    public required DateTimeOffset UpdatedAt { get; set; }
+}

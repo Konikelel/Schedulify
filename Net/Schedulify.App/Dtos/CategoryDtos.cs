@@ -11,4 +11,7 @@ public abstract class CategoryBaseDto
 
 public class CreateCategoryDto: CategoryBaseDto;
 
-public class UpdateCategoryDto: CategoryBaseDto;
+public class UpdateCategoryDto: CategoryBaseDto
+{
+    public required DateTimeOffset UpdatedAt { get; set; }
+}

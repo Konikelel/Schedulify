@@ -27,4 +27,7 @@ public abstract class ScheduleBaseDto
 
 public class CreateScheduleDto: ScheduleBaseDto;
 
-public class UpdateScheduleDto: ScheduleBaseDto;
+public class UpdateScheduleDto: ScheduleBaseDto
+{
+    public required DateTimeOffset UpdatedAt { get; set; }
+}
