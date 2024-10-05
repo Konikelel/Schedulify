@@ -31,10 +31,19 @@ public abstract class UserBaseValidator<TDto>: AbstractValidator<TDto>
         RuleFor(x => x.ImageUrl)
             .NotEmpty()
             .MaximumLength(256);
-        
-        RuleFor(x => x.Password)
+
+        RuleFor(x => x.PasswordHash)
             .NotEmpty()
-            .MaximumLength(64);
+            .Must(hash => hash.Length <= 64)
+            .WithMessage("Password hash is too long.");
+        
+        RuleFor(x => x.PasswordSalt)
+            .NotEmpty()
+            .Must(hash => hash.Length <= 128)
+            .WithMessage("Password salt is too long.");
+
+        RuleFor(x => x.UpdatedAt)
+            .NotEmpty();
     }
     
     private async Task<bool> ValidateUsername(string username, CancellationToken token)
@@ -55,6 +64,11 @@ public class CreateUserDtoValidator: UserBaseValidator<CreateUserDto>
         RuleFor(x => x.Id)
             .MustAsync(ValidateId)
             .WithMessage("Calendar with this id already exists.");
+        
+        RuleFor(x => x.CreatedAt)
+            .NotEmpty()
+            .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
+            .WithMessage("The creation date cannot be later than the updated date.");
     }
     
     private async Task<bool> ValidateId(Guid id, CancellationToken token)

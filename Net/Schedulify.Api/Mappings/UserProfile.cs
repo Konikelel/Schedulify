@@ -7,13 +7,14 @@ using Schedulify.Contracts.Responses;
 
 namespace Schedulify.Api.Mappings;
 
-public class ScheduleProfile: Profile
+public class UserProfile: Profile
 {
-    public ScheduleProfile()
+    public UserProfile()
     {
-        CreateMap<ScheduleBaseRequest, ScheduleBaseDto>()
+        CreateMap<UserBaseRequest, UserBaseDtos>()
             .ForMemberNewGuid(desc => desc.Id)
-            .ForMemberFromItem(dest => dest.OwnerId)
+            .ForMemberFromItem(dest => dest.PasswordHash)
+            .ForMemberFromItem(dest => dest.PasswordSalt)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<CreateScheduleRequest, CreateScheduleDto>()
@@ -30,7 +31,6 @@ public class ScheduleProfile: Profile
         CreateMap<ScheduleEntity, ScheduleModel>()
             .ReverseMap(); // MODEL NOT EXTENDED
         
-        CreateMap<ScheduleModel, CreateScheduleResponses>();
-        CreateMap<ScheduleModel, UpdateScheduleRequest>();
+        //TODO: Add mapping for UserBaseResponses
     }
 }

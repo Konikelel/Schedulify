@@ -23,6 +23,9 @@ public abstract class CategoryBaseValidator<TDto>: AbstractValidator<TDto>
         RuleFor(x => x.OwnerId)
             .MustAsync(ValidateOwnerId)
             .WithMessage("Owner does not exist.");
+
+        RuleFor(x => x.UpdatedAt)
+            .NotEmpty();
     }
     
     private async Task<bool> ValidateOwnerId(Guid id, CancellationToken token)
@@ -38,6 +41,11 @@ public class CreateCategoryDtoValidator: CategoryBaseValidator<CreateCategoryDto
         RuleFor(x => x.Id)
             .MustAsync(ValidateId)
             .WithMessage("Category with this id already exists.");
+        
+        RuleFor(x => x.CreatedAt)
+            .NotEmpty()
+            .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
+            .WithMessage("The creation date cannot be later than the updated date.");
     }
     
     private async Task<bool> ValidateId(Guid id, CancellationToken token)

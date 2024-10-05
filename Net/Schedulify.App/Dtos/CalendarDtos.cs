@@ -7,11 +7,13 @@ public abstract class CalendarBaseDto
     public required string Name { get; set; }
     
     public required Guid OwnerId { get; set; }
-}
-
-public class CreateCalendarDto: CalendarBaseDto;
-
-public class UpdateCalendarDto : CalendarBaseDto
-{
+    
     public required DateTimeOffset UpdatedAt { get; set; }
 }
+
+public class CreateCalendarDto : CalendarBaseDto
+{
+    public required DateTimeOffset CreatedAt { get; set; }
+}
+
+public class UpdateCalendarDto : CalendarBaseDto;

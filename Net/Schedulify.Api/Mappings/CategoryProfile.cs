@@ -11,13 +11,21 @@ public class CategoryProfile: Profile
 {
     public CategoryProfile()
     {
+        CreateMap<CategoryBaseRequest, CategoryBaseDto>()
+            .ForMemberNewGuid(dest => dest.Id)
+            .ForMemberFromItem(dest => dest.OwnerId)
+            .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
+        
         CreateMap<CreateCategoryRequest, CreateCategoryDto>()
-            .ForMemberNewGuid(desc => desc.Id)
-            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
+            .IncludeBase<CategoryBaseRequest, CategoryBaseDto>()
+            .ForMemberNewGuid(desc => desc.Id);
 
         CreateMap<UpdateCategoryRequest, UpdateCategoryDto>()
-            .ForMemberDateTimeOffsetNow(desc => desc.UpdatedAt)
-            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId");
+            .IncludeBase<CategoryBaseRequest, CategoryBaseDto>()
+            .ForMember(
+                dest => dest.Id, opt => 
+                    opt.MapFrom(src => src.Id
+            ));
         
         CreateMap<CategoryEntity, CategoryModel>()
             .ReverseMap(); // MODEL NOT EXTENDED

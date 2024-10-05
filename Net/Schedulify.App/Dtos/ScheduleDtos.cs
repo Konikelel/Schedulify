@@ -23,11 +23,13 @@ public abstract class ScheduleBaseDto
     public string? Link { get; set; }
     
     public required Guid OwnerId { get; set; }
-}
-
-public class CreateScheduleDto: ScheduleBaseDto;
-
-public class UpdateScheduleDto: ScheduleBaseDto
-{
+    
     public required DateTimeOffset UpdatedAt { get; set; }
 }
+
+public class CreateScheduleDto: ScheduleBaseDto
+{
+    public required DateTimeOffset CreatedAt { get; init; }
+}
+
+public class UpdateScheduleDto: ScheduleBaseDto;

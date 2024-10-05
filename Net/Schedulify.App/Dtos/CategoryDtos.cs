@@ -7,11 +7,13 @@ public abstract class CategoryBaseDto
     public required string Name { get; set; }
     
     public required Guid OwnerId { get; set; }
-}
-
-public class CreateCategoryDto: CategoryBaseDto;
-
-public class UpdateCategoryDto: CategoryBaseDto
-{
+    
     public required DateTimeOffset UpdatedAt { get; set; }
 }
+
+public class CreateCategoryDto : CategoryBaseDto
+{
+    public required DateTimeOffset CreatedAt { get; init; }
+}
+
+public class UpdateCategoryDto: CategoryBaseDto;

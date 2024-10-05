@@ -60,6 +60,9 @@ public abstract class ScheduleBaseValidator<TDto>: AbstractValidator<TDto>
         RuleFor(x => x.OwnerId)
             .MustAsync(ValidateOwnerId)
             .WithMessage("Owner does not exist.");
+
+        RuleFor(x => x.UpdatedAt)
+            .NotEmpty();
     }
 
     private async Task<bool> ValidateCalendarId(Guid id, CancellationToken token)
@@ -88,6 +91,11 @@ public class CreateScheduleDtoValidator: ScheduleBaseValidator<CreateScheduleDto
         RuleFor(x => x.Id)
             .MustAsync(ValidateId)
             .WithMessage("Schedule with this id already exists.");
+        
+        RuleFor(x => x.CreatedAt)
+            .NotEmpty()
+            .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
+            .WithMessage("The creation date cannot be later than the updated date.");
     }
     
     private async Task<bool> ValidateId(Guid id, CancellationToken token)

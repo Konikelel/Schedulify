@@ -11,13 +11,21 @@ public class CalendarProfile: Profile
 {
     public CalendarProfile()
     {
+        CreateMap<CalendarBaseRequest, CalendarBaseDto>()
+            .ForMemberNewGuid(dest => dest.Id)
+            .ForMemberFromItem(dest => dest.OwnerId)
+            .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
+        
         CreateMap<CreateCalendarRequest, CreateCalendarDto>()
-            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId")
-            .ForMemberNewGuid(desc => desc.Id);
+            .IncludeBase<CalendarBaseRequest, CalendarBaseDto>()
+            .ForMemberDateTimeOffsetNow(dest => dest.CreatedAt);
 
         CreateMap<UpdateCalendarRequest, UpdateCalendarDto>()
-            .ForMemberFromItem(dest => dest.OwnerId, "OwnerId")
-            .ForMemberDateTimeOffsetNow(desc => desc.UpdatedAt);
+            .IncludeBase<CalendarBaseRequest, CalendarBaseDto>()
+            .ForMember(
+                dest => dest.Id, opt => 
+                    opt.MapFrom(src => src.Id
+            ));
         
         CreateMap<CalendarModel, CategoryEntity>(); //MODEL EXTENDED
         
