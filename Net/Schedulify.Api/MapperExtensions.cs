@@ -5,7 +5,7 @@ namespace Schedulify.Api;
 
 public static class MapperExtensions
 {
-    public static TDestination MapUsingItems<TSource, TDestination>(this IMapper mapper, TSource source, Dictionary<string, string> items)
+    public static TDestination MapUsingItems<TSource, TDestination>(this IMapper mapper, TSource source, Dictionary<string, object> items)
     {
         return mapper.Map<TSource, TDestination>(source, opt =>
             {

@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using Schedulify.App;
 
 namespace Schedulify.Api;
 
@@ -14,7 +15,7 @@ public static class ServiceCollectionExtensions
     private static IMapper CreateMapper()
     {
         var config = new MapperConfiguration(cfg =>
-            cfg.AddMaps(Assembly.GetExecutingAssembly())
+            cfg.AddMaps(Assembly.GetAssembly(typeof(IAppMarker)))
         );
         return config.CreateMapper();
     }
