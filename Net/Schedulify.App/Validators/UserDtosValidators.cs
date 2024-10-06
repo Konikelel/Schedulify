@@ -7,11 +7,11 @@ namespace Schedulify.App.Validators;
 public abstract class UserBaseValidator<TDto> : AbstractValidator<TDto>
     where TDto : AbstractBaseUserDtos
 {
-    protected readonly IUserRepository UserRepository;
+    private readonly IUserRepository _userRepository;
     
     protected UserBaseValidator(IUserRepository userRepository)
     {
-        UserRepository = userRepository;
+        _userRepository = userRepository;
         
         RuleFor(x => x.Id)
             .NotEmpty();
@@ -19,13 +19,13 @@ public abstract class UserBaseValidator<TDto> : AbstractValidator<TDto>
         RuleFor(x => x.Username)
             .NotEmpty()
             .MaximumLength(64)
-            .MustAsync(ValidateUsername)
+            .MustAsync(UsernameNotExists)
             .WithMessage("User with this username already exists.");
         
         RuleFor(x => x.Email)
             .NotEmpty()
             .MaximumLength(64)
-            .MustAsync(ValidateEmail)
+            .MustAsync(EmailNotExists)
             .WithMessage("User with this email already exists.");
         
         RuleFor(x => x.ImageUrl)
@@ -46,14 +46,19 @@ public abstract class UserBaseValidator<TDto> : AbstractValidator<TDto>
             .NotEmpty();
     }
     
-    private async Task<bool> ValidateUsername(string username, CancellationToken token)
+    private async Task<bool> UsernameNotExists(string username, CancellationToken token)
     {
-        return !await UserRepository.ExistsByUsernameAsync(username, token);
+        return !await _userRepository.ExistsByUsernameAsync(username, token);
     }
     
-    private async Task<bool> ValidateEmail(string email, CancellationToken token)
+    private async Task<bool> EmailNotExists(string email, CancellationToken token)
     {
-        return !await UserRepository.ExistsByEmailAsync(email, token);
+        return !await _userRepository.ExistsByEmailAsync(email, token);
+    }
+
+    protected async Task<bool> IdExists(Guid id, CancellationToken token)
+    {
+        return await _userRepository.ExistsByIdAsync(id, token);
     }
 }
 
@@ -62,18 +67,13 @@ public class CreateUserDtoValidator : UserBaseValidator<CreateUserDto>
     public CreateUserDtoValidator(IUserRepository userRepository) : base(userRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(async (id, token) => !await IdExists(id, token))
             .WithMessage("Calendar with this id already exists.");
         
         RuleFor(x => x.CreatedAt)
             .NotEmpty()
             .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
             .WithMessage("The creation date cannot be later than the updated date.");
-    }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return !await UserRepository.ExistsByIdAsync(id, token);
     }
 }
 
@@ -82,12 +82,7 @@ public class UpdateUserDtoValidator : UserBaseValidator<UpdateUserDto>
     public UpdateUserDtoValidator(IUserRepository userRepository) : base(userRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(IdExists)
             .WithMessage("Calendar with this id does not exist.");
-    }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return await UserRepository.ExistsByIdAsync(id, token);
     }
 }

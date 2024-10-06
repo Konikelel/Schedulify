@@ -7,16 +7,19 @@ namespace Schedulify.App.Validators;
 public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
     where TDto: AbstractBaseScheduleDto
 {
-    protected readonly ICalendarRepository CalendarRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly ICalendarRepository _calendarRepository;
     private readonly ICategoryRepository _categoryRepository;
     private readonly IScheduleRepository _scheduleRepository;
 
     protected ScheduleBaseValidator(
+        IUserRepository userRepository,
         ICalendarRepository calendarRepository,
         ICategoryRepository categoryRepository,
         IScheduleRepository scheduleRepository)
     {
-        CalendarRepository = calendarRepository;
+        _userRepository = userRepository;
+        _calendarRepository = calendarRepository;
         _categoryRepository = categoryRepository;
         _scheduleRepository = scheduleRepository;
         
@@ -25,7 +28,7 @@ public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
 
         RuleFor(x => x.CalendarId)
             .NotEmpty()
-            .MustAsync(ValidateCalendarId)
+            .MustAsync(CalendarIdExists)
             .WithMessage("Calendar does not exist.");
         
         RuleFor(x => x.TimeStart)
@@ -54,42 +57,48 @@ public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
 
         RuleFor(x => x.CategoryId)
             .NotEmpty()
-            .MustAsync(ValidateCategoryId)
+            .MustAsync(CategoryIdExists)
             .WithMessage("Category does not exist.");
 
         RuleFor(x => x.OwnerId)
-            .MustAsync(ValidateOwnerId)
+            .MustAsync(OwnerIdExists)
             .WithMessage("Owner does not exist.");
 
         RuleFor(x => x.UpdatedAt)
             .NotEmpty();
     }
-
-    private async Task<bool> ValidateCalendarId(Guid id, CancellationToken token)
+    
+    private async Task<bool> OwnerIdExists(Guid id, CancellationToken token)
     {
-        return await CalendarRepository.ExistsByIdAsync(id, token);
+        return await _userRepository.ExistsByIdAsync(id, token);
+    }
+
+    private async Task<bool> CalendarIdExists(Guid id, CancellationToken token)
+    {
+        return await _calendarRepository.ExistsByIdAsync(id, token);
     }
     
-    private async Task<bool> ValidateCategoryId(Guid id, CancellationToken token)
+    private async Task<bool> CategoryIdExists(Guid id, CancellationToken token)
     {
         return await _categoryRepository.ExistsByIdAsync(id, token);
     }
-
-    private async Task<bool> ValidateOwnerId(Guid id, CancellationToken token)
+    
+    protected async Task<bool> IdExists(Guid id, CancellationToken token)
     {
-        return !await _scheduleRepository.ExistsByIdAsync(id, token);
+        return await _scheduleRepository.ExistsByIdAsync(id, token);
     }
 }
 
 public class CreateScheduleDtoValidator: ScheduleBaseValidator<CreateScheduleDto>
 {
     public CreateScheduleDtoValidator(
+        IUserRepository userRepository,
         ICalendarRepository calendarRepository,
         ICategoryRepository categoryRepository,
-        IScheduleRepository scheduleRepository) : base(calendarRepository, categoryRepository, scheduleRepository)
+        IScheduleRepository scheduleRepository) : base(userRepository, calendarRepository, categoryRepository, scheduleRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(async (id, token) => !await IdExists(id, token))
             .WithMessage("Schedule with this id already exists.");
         
         RuleFor(x => x.CreatedAt)
@@ -97,27 +106,18 @@ public class CreateScheduleDtoValidator: ScheduleBaseValidator<CreateScheduleDto
             .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
             .WithMessage("The creation date cannot be later than the updated date.");
     }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return !await CalendarRepository.ExistsByIdAsync(id, token);
-    }
 }
 
 public class UpdateScheduleDtoValidator: ScheduleBaseValidator<UpdateScheduleDto>
 {
     public UpdateScheduleDtoValidator(
+        IUserRepository userRepository,
         ICalendarRepository calendarRepository,
         ICategoryRepository categoryRepository,
-        IScheduleRepository scheduleRepository) : base(calendarRepository, categoryRepository, scheduleRepository)
+        IScheduleRepository scheduleRepository) : base(userRepository, calendarRepository, categoryRepository, scheduleRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(IdExists)
             .WithMessage("Schedule with this id does not exist.");
-    }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return await CalendarRepository.ExistsByIdAsync(id, token);
     }
 }

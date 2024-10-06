@@ -7,11 +7,15 @@ namespace Schedulify.App.Validators;
 public abstract class CategoryBaseValidator<TDto> : AbstractValidator<TDto>
     where TDto : AbstractBaseCategoryDto
 {
-    protected readonly ICategoryRepository CategoryRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly ICategoryRepository _categoryRepository;
     
-    protected CategoryBaseValidator(ICategoryRepository categoryRepository)
+    protected CategoryBaseValidator(
+        IUserRepository userRepository,
+        ICategoryRepository categoryRepository)
     {
-        CategoryRepository = categoryRepository;
+        _userRepository = userRepository;
+        _categoryRepository = categoryRepository;
         
         RuleFor(x => x.Id)
             .NotEmpty();
@@ -21,25 +25,32 @@ public abstract class CategoryBaseValidator<TDto> : AbstractValidator<TDto>
             .MaximumLength(64);
 
         RuleFor(x => x.OwnerId)
-            .MustAsync(ValidateOwnerId)
+            .MustAsync(OwnerIdExists)
             .WithMessage("Owner does not exist.");
 
         RuleFor(x => x.UpdatedAt)
             .NotEmpty();
     }
     
-    private async Task<bool> ValidateOwnerId(Guid id, CancellationToken token)
+    private async Task<bool> OwnerIdExists(Guid id, CancellationToken token)
     {
-        return !await CategoryRepository.ExistsByIdAsync(id, token);
+        return !await _userRepository.ExistsByIdAsync(id, token);
+    }
+    
+    protected async Task<bool> IdExists(Guid id, CancellationToken token)
+    {
+        return !await _categoryRepository.ExistsByIdAsync(id, token);
     }
 }
 
 public class CreateCategoryDtoValidator : CategoryBaseValidator<CreateCategoryDto>
 {
-    public CreateCategoryDtoValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
+    public CreateCategoryDtoValidator(
+        IUserRepository userRepository,
+        ICategoryRepository categoryRepository) : base(userRepository, categoryRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(async (id, token) => !await IdExists(id, token))
             .WithMessage("Category with this id already exists.");
         
         RuleFor(x => x.CreatedAt)
@@ -47,24 +58,16 @@ public class CreateCategoryDtoValidator : CategoryBaseValidator<CreateCategoryDt
             .Must((dto, createdAt) => createdAt <= dto.UpdatedAt)
             .WithMessage("The creation date cannot be later than the updated date.");
     }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return !await CategoryRepository.ExistsByIdAsync(id, token);
-    }
 }
 
 public class UpdateCategoryDtoValidator : CategoryBaseValidator<UpdateCategoryDto>
 {
-    public UpdateCategoryDtoValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
+    public UpdateCategoryDtoValidator(
+        IUserRepository userRepository,
+        ICategoryRepository categoryRepository) : base(userRepository, categoryRepository)
     {
         RuleFor(x => x.Id)
-            .MustAsync(ValidateId)
+            .MustAsync(IdExists)
             .WithMessage("Category with this id does not exist.");
-    }
-    
-    private async Task<bool> ValidateId(Guid id, CancellationToken token)
-    {
-        return await CategoryRepository.ExistsByIdAsync(id, token);
     }
 }
