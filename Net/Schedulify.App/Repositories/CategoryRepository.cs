@@ -1,4 +1,7 @@
+using Dapper;
 using Schedulify.App.Attributes;
+using Schedulify.App.Database;
+using Schedulify.App.Dtos;
 using Schedulify.App.Entities;
 using Schedulify.App.Enums;
 
@@ -13,44 +16,93 @@ public interface ICategoryRepository
     
     public Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<bool> CreateAsync(CategoryEntity category, CancellationToken token = default);
+    public Task<bool> CreateAsync(CreateCategoryDto category, CancellationToken token = default);
     
-    public Task<bool> UpdateAsync(CategoryEntity category, CancellationToken token = default);
+    public Task<bool> UpdateAsync(UpdateCategoryDto category, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
 public class CategoryRepository: ICategoryRepository
 {
-    private readonly List<CategoryEntity> _categories; //TODO: Replace this with a real database
-
+    private readonly IDbConnectionFactory _dbConnectionFactory;
+    
+    public CategoryRepository(IDbConnectionFactory dbConnectionFactory)
+    {
+        this._dbConnectionFactory = dbConnectionFactory;
+    }
     public async Task<bool> ExistsByIdAsync(Guid id, CancellationToken token = default)
     {
-        return false;
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        
+        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
+            "SELECT COUNT(1) FROM Categories WHERE Id = @Id",
+            new { Id = id },
+            cancellationToken: token
+        ));
     }
 
     public async Task<CategoryEntity?> GetByIdAsync(Guid id, CancellationToken token = default)
     {
-        return _categories.SingleOrDefault(x => x.Id == id);
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        
+        return await connection.QuerySingleOrDefaultAsync<CategoryEntity>(new CommandDefinition(
+            "SELECT * FROM Categories WHERE Id = @Id",
+            new { Id = id },
+            cancellationToken: token
+        ));
     }
     
     public async Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
     {
-        return this._categories.AsEnumerable();
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        return await connection.QueryAsync<CategoryEntity>(new CommandDefinition(
+            "SELECT * FROM Categories WHERE OwnerId = @Id",
+            new { Id = id },
+            cancellationToken: token
+        ));
     }
 
-    public async Task<bool> CreateAsync(CategoryEntity category, CancellationToken token = default)
+    public async Task<bool> CreateAsync(CreateCategoryDto category, CancellationToken token = default)
     {
-        return true;
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+
+        var result = await connection.ExecuteAsyncWithTransaction(
+            "INSERT INTO Categories (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
+            category,
+            affectMultiple: false,
+            cancellationToken: token
+        );
+        
+        return result == 1;
     }
 
-    public async Task<bool> UpdateAsync(CategoryEntity category, CancellationToken token = default)
+    public async Task<bool> UpdateAsync(UpdateCategoryDto category, CancellationToken token = default)
     {
-        return true;
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        
+        var result = await connection.ExecuteAsyncWithTransaction(
+            "INSERT INTO Categories (Id, Name, OwnerId, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @UpdatedAt)",
+            category,
+            affectMultiple: false,
+            cancellationToken: token
+        );
+        
+        return result == 1;
     }
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
-        return true;
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        
+        var result = await connection.ExecuteAsyncWithTransaction(
+            "DELETE FROM Categories WHERE Id = @Id",
+            new { Id = id },
+            affectMultiple: false,
+            cancellationToken: token
+        );
+        
+        return result == 1;
     }
 }

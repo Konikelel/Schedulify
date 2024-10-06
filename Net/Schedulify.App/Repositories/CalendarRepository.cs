@@ -60,7 +60,7 @@ public class CalendarRepository: ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
         return await connection.QueryAsync<CalendarEntity>(new CommandDefinition(
-            "SELECT * FROM Calendars WHERE Id = @Id",
+            "SELECT * FROM Calendars WHERE OwnerId = @Id",
             new { Id = id },
             cancellationToken: token
         ));
