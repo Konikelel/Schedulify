@@ -5,30 +5,17 @@ namespace Schedulify.App;
 
 public static class DapperExtensions
 {
-    public static async Task<int> ExecuteAsyncWithTransaction(
-        this IDbConnection cnn,
-        string sqlQuery,
-        object? parameters = null,
-        bool affectMultiple = false,
-        CancellationToken cancellationToken = default)
+    public static async Task<int> ExecuteAsyncTransaction(this IDbConnection cnn, CommandDefinition command, bool affectMultple = false)
     {
-        using var transaction = cnn.BeginTransaction();
-        var result = 0;
+        var result = await cnn.ExecuteAsync(command);
 
-        try
+        if (result <= 1 || affectMultple)
         {
-            result = await cnn.ExecuteAsync(
-                new CommandDefinition(sqlQuery, parameters, transaction: transaction, cancellationToken: cancellationToken)
-            );
-        }
-        catch (Exception ex)
-        {
-            transaction.Rollback();
-            throw;
+            command.Transaction?.Commit();
+            return result;
         }
         
-        if (result == 0 || (result > 1 && !affectMultiple)) transaction.Rollback(); else transaction.Commit();
-
-        return result;
+        command.Transaction?.Rollback();
+        return 0;
     }
 }

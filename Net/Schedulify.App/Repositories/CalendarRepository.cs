@@ -69,39 +69,45 @@ public class CalendarRepository : ICalendarRepository
     public async Task<bool> CreateAsync(CreateCalendarDto calendar, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
-
-        var result = await connection.ExecuteAsyncWithTransaction(
+        using var transaction = connection.BeginTransaction();
+        
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "INSERT INTO Calendars (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
             calendar,
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 
     public async Task<bool> UpdateAsync(UpdateCalendarDto calendar, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncWithTransaction(
-            "INSERT INTO Calendars (Id, Name, OwnerId, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @UpdatedAt)",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
+            "UPDATE Calendars SET Name = @Name, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt WHERE Id = @Id",
             calendar,
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncWithTransaction(
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "DELETE FROM Calendars WHERE Id = @Id",
             new { Id = id },
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 }

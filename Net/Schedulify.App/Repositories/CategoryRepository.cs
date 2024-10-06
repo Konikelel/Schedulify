@@ -67,42 +67,45 @@ public class CategoryRepository : ICategoryRepository
     public async Task<bool> CreateAsync(CreateCategoryDto category, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        using var transaction = connection.BeginTransaction();
 
-        var result = await connection.ExecuteAsyncWithTransaction(
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "INSERT INTO Categories (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
             category,
-            affectMultiple: false,
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 
     public async Task<bool> UpdateAsync(UpdateCategoryDto category, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncWithTransaction(
-            "INSERT INTO Categories (Id, Name, OwnerId, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @UpdatedAt)",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
+            "UPDATE Categories SET Name = @Name, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt WHERE Id = @Id",
             category,
-            affectMultiple: false,
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
+        using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncWithTransaction(
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "DELETE FROM Categories WHERE Id = @Id",
             new { Id = id },
-            affectMultiple: false,
+            transaction: transaction,
             cancellationToken: token
-        );
+        ));
         
-        return result == 1;
+        return result > 0;
     }
 }
