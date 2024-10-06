@@ -19,6 +19,7 @@ public class UserProfile : Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
 
         CreateMap<UpdateUserRequest, UpdateUserDto>()
+            .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.PasswordHash)
             .ForMemberFromItem(dest => dest.PasswordSalt)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);

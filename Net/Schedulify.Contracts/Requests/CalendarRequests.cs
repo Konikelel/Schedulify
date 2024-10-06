@@ -7,7 +7,4 @@ public abstract class AbstractBaseCalendarRequest
 
 public class CreateCalendarRequest : AbstractBaseCalendarRequest;
 
-public class UpdateCalendarRequest : AbstractBaseCalendarRequest
-{
-    public required Guid Id { get; init; }
-}
+public class UpdateCalendarRequest : AbstractBaseCalendarRequest;

@@ -7,7 +7,4 @@ public abstract class AbstractBaseCategoryRequest
 
 public class CreateCategoryRequest : AbstractBaseCategoryRequest;
 
-public class UpdateCategoryRequest : AbstractBaseCategoryRequest
-{
-    public required Guid Id { get; init; }
-}
+public class UpdateCategoryRequest : AbstractBaseCategoryRequest;

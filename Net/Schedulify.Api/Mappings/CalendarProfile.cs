@@ -18,6 +18,7 @@ public class CalendarProfile: Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
 
         CreateMap<UpdateCalendarRequest, UpdateCalendarDto>()
+            .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         

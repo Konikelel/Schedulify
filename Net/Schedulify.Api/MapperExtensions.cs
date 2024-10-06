@@ -5,13 +5,13 @@ namespace Schedulify.Api;
 
 public static class MapperExtensions
 {
-    public static TDestination MapUsingItems<TSource, TDestination>(this IMapper mapper, TSource source, Dictionary<string, object> items)
+    public static TDestination MapUsingItems<TDestination>(this IMapper mapper, object source, object items)
     {
-        return mapper.Map<TSource, TDestination>(source, opt =>
+        return mapper.Map<TDestination>(source, opt =>
             {
-                foreach (var item in items)
+                foreach (var item in items.GetType().GetProperties())
                 {
-                    opt.Items[item.Key] = item.Value;
+                    opt.Items[item.Name] = item.GetValue(items);
                 }
             });
     }

@@ -18,12 +18,16 @@ public class CategoryProfile : Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
 
         CreateMap<UpdateCategoryRequest, UpdateCategoryDto>()
+            .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<CategoryEntity, CategoryModel>()
             .ReverseMap(); // MODEL NOT EXTENDED
 
+        CreateMap<CategoryModel, GetCategoryResponse>();
+        CreateMap<IEnumerable<CategoryModel>, GetByUserCategoryResponse>()
+            .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src));
         CreateMap<CategoryModel, CreateCategoryResponse>();
         CreateMap<CategoryModel, UpdateCategoryResponse>();
     }

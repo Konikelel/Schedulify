@@ -11,7 +11,4 @@ public abstract class AbstractBaseUserRequest
 
 public class CreateUserRequest : AbstractBaseUserRequest;
 
-public class UpdateUserRequest : AbstractBaseUserRequest
-{
-    public required Guid Id { get; init; }
-}
+public class UpdateUserRequest : AbstractBaseUserRequest;

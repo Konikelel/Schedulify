@@ -23,7 +23,4 @@ public abstract class AbstractBaseScheduleRequest
 
 public class CreateScheduleRequest : AbstractBaseScheduleRequest;
 
-public class UpdateScheduleRequest : AbstractBaseScheduleRequest
-{
-    public required Guid Id { get; init; }
-}
+public class UpdateScheduleRequest : AbstractBaseScheduleRequest;

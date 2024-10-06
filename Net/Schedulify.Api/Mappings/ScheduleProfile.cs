@@ -18,6 +18,7 @@ public class ScheduleProfile : Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<UpdateScheduleRequest, UpdateScheduleDto>()
+            .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
