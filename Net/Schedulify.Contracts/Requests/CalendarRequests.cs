@@ -1,13 +1,13 @@
 ﻿namespace Schedulify.Contracts.Requests;
 
-public abstract class CalendarBaseRequest
+public abstract class AbstractCalendarBaseRequest
 {
     public required string Name { get; init; }
 }
 
-public class CreateCalendarRequest: CalendarBaseRequest;
+public class CreateCalendarRequest: AbstractCalendarBaseRequest;
 
-public class UpdateCalendarRequest: CalendarBaseRequest
+public class UpdateCalendarRequest: AbstractCalendarBaseRequest
 {
     public required Guid Id { get; init; }
 }

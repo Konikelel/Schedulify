@@ -2,7 +2,7 @@
 
 namespace Schedulify.Contracts.Responses;
 
-public abstract class ScheduleBaseResponses
+public abstract class AbstractScheduleBaseResponses
 {
     public required Guid Id { get; init; }
     
@@ -23,8 +23,8 @@ public abstract class ScheduleBaseResponses
     public string? Link { get; init; }
 }
 
-public class CreateScheduleResponses : ScheduleBaseResponses;
+public class CreateScheduleResponses : AbstractScheduleBaseResponses;
 
-public class UpdateScheduleResponses: ScheduleBaseResponses;
+public class UpdateScheduleResponses: AbstractScheduleBaseResponses;
 
-public class GetScheduleResponse: ScheduleBaseResponses;
+public class GetScheduleResponse: AbstractScheduleBaseResponses;

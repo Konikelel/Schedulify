@@ -2,18 +2,18 @@
 
 namespace Schedulify.Contracts.Responses;
 
-public abstract class CalendarBaseResponse
+public abstract class AbstractCalendarBaseResponse
 {
     public required Guid Id { get; init; }
         
     public required string Name { get; init; }
 }
 
-public class CreateCalendarResponse : CalendarBaseResponse;
+public class CreateCalendarResponse : AbstractCalendarBaseResponse;
 
-public class UpdateCalendarResponse: CalendarBaseResponse;
+public class UpdateCalendarResponse: AbstractCalendarBaseResponse;
 
-public class GetCalendarResponse: CalendarBaseResponse
+public class GetCalendarResponse: AbstractCalendarBaseResponse
 {
     public required IEnumerable<CategoryModel> Categories { get; init; }
     

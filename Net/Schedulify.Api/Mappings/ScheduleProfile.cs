@@ -11,21 +11,15 @@ public class ScheduleProfile: Profile
 {
     public ScheduleProfile()
     {
-        CreateMap<ScheduleBaseRequest, ScheduleBaseDto>()
-            .ForMemberNewGuid(desc => desc.Id)
+        CreateMap<CreateScheduleRequest, CreateScheduleDto>()
+            .ForMemberNewGuid(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
+            .ForMemberDateTimeOffsetNow(dest => dest.CreatedAt)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
-        CreateMap<CreateScheduleRequest, CreateScheduleDto>()
-            .IncludeBase<ScheduleBaseRequest, ScheduleBaseDto>()
-            .ForMemberDateTimeOffsetNow(desc => desc.CreatedAt);
-
         CreateMap<UpdateScheduleRequest, UpdateScheduleDto>()
-            .IncludeBase<ScheduleBaseRequest, ScheduleBaseDto>()
-            .ForMember(
-                dest => dest.Id, opt => 
-                    opt.MapFrom(src => src.Id
-            ));
+            .ForMemberFromItem(dest => dest.OwnerId)
+            .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<ScheduleEntity, ScheduleModel>()
             .ReverseMap(); // MODEL NOT EXTENDED
