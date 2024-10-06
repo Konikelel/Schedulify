@@ -7,7 +7,7 @@ using Schedulify.Contracts.Responses;
 
 namespace Schedulify.Api.Mappings;
 
-public class UserProfile: Profile
+public class UserProfile : Profile
 {
     public UserProfile()
     {

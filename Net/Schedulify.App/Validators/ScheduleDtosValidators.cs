@@ -4,8 +4,8 @@ using Schedulify.App.Repositories;
 
 namespace Schedulify.App.Validators;
 
-public abstract class ScheduleBaseValidator<TDto>: AbstractValidator<TDto>
-    where TDto: ScheduleBaseDto
+public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
+    where TDto: AbstractBaseScheduleDto
 {
     protected readonly ICalendarRepository CalendarRepository;
     private readonly ICategoryRepository _categoryRepository;

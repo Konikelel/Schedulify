@@ -1,6 +1,6 @@
 namespace Schedulify.App.Dtos;
 
-public abstract class UserBaseDtos
+public abstract class AbstractBaseUserDtos
 {
     public required Guid Id { get; init; }
     
@@ -17,9 +17,9 @@ public abstract class UserBaseDtos
     public required DateTimeOffset UpdatedAt { get; set; }
 }
 
-public class CreateUserDto : UserBaseDtos
+public class CreateUserDto : AbstractBaseUserDtos
 {
     public required DateTimeOffset CreatedAt { get; init; }
 }
 
-public class UpdateUserDto: UserBaseDtos;
+public class UpdateUserDto: AbstractBaseUserDtos;

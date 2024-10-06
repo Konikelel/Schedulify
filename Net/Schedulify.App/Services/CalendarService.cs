@@ -18,7 +18,7 @@ public interface ICalendarService
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
-public class CalendarService: ICalendarService
+public class CalendarService : ICalendarService
 {
     private readonly ICalendarRepository _calendarRepository;
     

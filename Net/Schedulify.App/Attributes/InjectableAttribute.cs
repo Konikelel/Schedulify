@@ -3,7 +3,7 @@
 namespace Schedulify.App.Attributes;
 
 [AttributeUsage(AttributeTargets.Interface, AllowMultiple = false)]
-public class InjectableAttribute: Attribute
+public class InjectableAttribute : Attribute
 {
     public readonly Type Implementation;
     public readonly InjectableTypeEnum InjectableType;

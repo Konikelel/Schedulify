@@ -4,8 +4,8 @@ using Schedulify.App.Repositories;
 
 namespace Schedulify.App.Validators;
 
-public abstract class CategoryBaseValidator<TDto>: AbstractValidator<TDto>
-    where TDto: CategoryBaseDto
+public abstract class CategoryBaseValidator<TDto> : AbstractValidator<TDto>
+    where TDto : AbstractBaseCategoryDto
 {
     protected readonly ICategoryRepository CategoryRepository;
     
@@ -34,7 +34,7 @@ public abstract class CategoryBaseValidator<TDto>: AbstractValidator<TDto>
     }
 }
 
-public class CreateCategoryDtoValidator: CategoryBaseValidator<CreateCategoryDto>
+public class CreateCategoryDtoValidator : CategoryBaseValidator<CreateCategoryDto>
 {
     public CreateCategoryDtoValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
     {
@@ -54,7 +54,7 @@ public class CreateCategoryDtoValidator: CategoryBaseValidator<CreateCategoryDto
     }
 }
 
-public class UpdateCategoryDtoValidator: CategoryBaseValidator<UpdateCategoryDto>
+public class UpdateCategoryDtoValidator : CategoryBaseValidator<UpdateCategoryDto>
 {
     public UpdateCategoryDtoValidator(ICategoryRepository categoryRepository) : base(categoryRepository)
     {

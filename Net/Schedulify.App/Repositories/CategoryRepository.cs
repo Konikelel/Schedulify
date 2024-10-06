@@ -23,7 +23,7 @@ public interface ICategoryRepository
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
-public class CategoryRepository: ICategoryRepository
+public class CategoryRepository : ICategoryRepository
 {
     private readonly IDbConnectionFactory _dbConnectionFactory;
     

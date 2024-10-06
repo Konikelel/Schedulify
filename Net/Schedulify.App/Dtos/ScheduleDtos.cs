@@ -2,7 +2,7 @@ using Schedulify.App.Enums;
 
 namespace Schedulify.App.Dtos;
 
-public abstract class ScheduleBaseDto
+public abstract class AbstractBaseScheduleDto
 {
     public required Guid Id { get; init; }
     
@@ -27,9 +27,9 @@ public abstract class ScheduleBaseDto
     public required DateTimeOffset UpdatedAt { get; set; }
 }
 
-public class CreateScheduleDto: ScheduleBaseDto
+public class CreateScheduleDto: AbstractBaseScheduleDto
 {
     public required DateTimeOffset CreatedAt { get; init; }
 }
 
-public class UpdateScheduleDto: ScheduleBaseDto;
+public class UpdateScheduleDto: AbstractBaseScheduleDto;

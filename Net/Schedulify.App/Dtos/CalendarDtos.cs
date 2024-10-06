@@ -1,6 +1,6 @@
 namespace Schedulify.App.Dtos;
 
-public abstract class CalendarBaseDto
+public abstract class AbstractBaseCalendarDto
 {
     public required Guid Id { get; init; }
     
@@ -11,9 +11,9 @@ public abstract class CalendarBaseDto
     public required DateTimeOffset UpdatedAt { get; set; }
 }
 
-public class CreateCalendarDto : CalendarBaseDto
+public class CreateCalendarDto : AbstractBaseCalendarDto
 {
     public required DateTimeOffset CreatedAt { get; set; }
 }
 
-public class UpdateCalendarDto : CalendarBaseDto;
+public class UpdateCalendarDto : AbstractBaseCalendarDto;

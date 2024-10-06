@@ -1,6 +1,6 @@
 namespace Schedulify.App.Dtos;
 
-public abstract class CategoryBaseDto
+public abstract class AbstractBaseCategoryDto
 {
     public required Guid Id { get; init; }
     
@@ -11,9 +11,9 @@ public abstract class CategoryBaseDto
     public required DateTimeOffset UpdatedAt { get; set; }
 }
 
-public class CreateCategoryDto : CategoryBaseDto
+public class CreateCategoryDto : AbstractBaseCategoryDto
 {
     public required DateTimeOffset CreatedAt { get; init; }
 }
 
-public class UpdateCategoryDto: CategoryBaseDto;
+public class UpdateCategoryDto : AbstractBaseCategoryDto;

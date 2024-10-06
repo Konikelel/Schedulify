@@ -5,7 +5,7 @@ using Schedulify.App.Repositories;
 namespace Schedulify.App.Validators;
 
 public abstract class CalendarBaseValidator<TDto>: AbstractValidator<TDto>
-    where TDto: CalendarBaseDto
+    where TDto: AbstractBaseCalendarDto
 {
     protected readonly ICalendarRepository CalendarRepository;
     

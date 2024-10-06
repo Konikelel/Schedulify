@@ -4,8 +4,8 @@ using Schedulify.App.Repositories;
 
 namespace Schedulify.App.Validators;
 
-public abstract class UserBaseValidator<TDto>: AbstractValidator<TDto>
-    where TDto: UserBaseDtos
+public abstract class UserBaseValidator<TDto> : AbstractValidator<TDto>
+    where TDto : AbstractBaseUserDtos
 {
     protected readonly IUserRepository UserRepository;
     
@@ -57,7 +57,7 @@ public abstract class UserBaseValidator<TDto>: AbstractValidator<TDto>
     }
 }
 
-public class CreateUserDtoValidator: UserBaseValidator<CreateUserDto>
+public class CreateUserDtoValidator : UserBaseValidator<CreateUserDto>
 {
     public CreateUserDtoValidator(IUserRepository userRepository) : base(userRepository)
     {
@@ -77,7 +77,7 @@ public class CreateUserDtoValidator: UserBaseValidator<CreateUserDto>
     }
 }
 
-public class UpdateUserDtoValidator: UserBaseValidator<UpdateUserDto>
+public class UpdateUserDtoValidator : UserBaseValidator<UpdateUserDto>
 {
     public UpdateUserDtoValidator(IUserRepository userRepository) : base(userRepository)
     {

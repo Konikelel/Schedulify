@@ -22,7 +22,7 @@ public interface IUserRepository
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
-public class UserRepository: IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly List<UserEntity> _users; //TODO: Replace this with a real database
 

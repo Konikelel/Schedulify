@@ -1,13 +1,13 @@
 ﻿namespace Schedulify.Contracts.Requests;
 
-public class AbstractCategoryBaseRequest
+public abstract class AbstractBaseCategoryRequest
 {
     public required string Name { get; init; }
 }
 
-public class CreateCategoryRequest: AbstractCategoryBaseRequest;
+public class CreateCategoryRequest : AbstractBaseCategoryRequest;
 
-public class UpdateCategoryRequest: AbstractCategoryBaseRequest
+public class UpdateCategoryRequest : AbstractBaseCategoryRequest
 {
     public required Guid Id { get; init; }
 }

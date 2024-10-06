@@ -23,7 +23,7 @@ public interface ICalendarRepository
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
-public class CalendarRepository: ICalendarRepository
+public class CalendarRepository : ICalendarRepository
 {
     private readonly IDbConnectionFactory _dbConnectionFactory;
     

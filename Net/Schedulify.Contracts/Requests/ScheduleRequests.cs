@@ -2,7 +2,7 @@
 
 namespace Schedulify.Contracts.Requests;
 
-public abstract class AbstractScheduleBaseRequest
+public abstract class AbstractBaseScheduleRequest
 {
     public required Guid CalendarId { get; init; }
     
@@ -21,9 +21,9 @@ public abstract class AbstractScheduleBaseRequest
     public string? Link { get; init; }
 }
 
-public class CreateScheduleRequest: AbstractScheduleBaseRequest;
+public class CreateScheduleRequest : AbstractBaseScheduleRequest;
 
-public class UpdateScheduleRequest: AbstractScheduleBaseRequest
+public class UpdateScheduleRequest : AbstractBaseScheduleRequest
 {
     public required Guid Id { get; init; }
 }
