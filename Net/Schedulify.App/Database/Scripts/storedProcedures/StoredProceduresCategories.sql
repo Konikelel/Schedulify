@@ -1,5 +1,4 @@
 CREATE OR ALTER PROCEDURE dbo.spCategoriesCount
-/* EXEC dbo.spCategoriesCount @OwnerId=# */
     @Id UNIQUEIDENTIFIER = NULL,
     @OwnerId UNIQUEIDENTIFIER = NULL
 AS
@@ -11,8 +10,8 @@ END;
 GO;
 
 
+
 CREATE OR ALTER PROCEDURE dbo.spCategoriesGet
-/* EXEC dbo.spCategoriesGet @OwnerId=# */
     @ReturnFirst BIT,
     @Id UNIQUEIDENTIFIER = NULL,
     @OwnerId UNIQUEIDENTIFIER = NULL
@@ -33,8 +32,9 @@ BEGIN
 END;
 GO;
 
+
+
 CREATE OR ALTER PROCEDURE dbo.spCategoriesDelete
-/* EXEC dbo.spCategoriesDelete @OwnerId=# */
     @Id UNIQUEIDENTIFIER = NULL,
     @OwnerId UNIQUEIDENTIFIER = NULL
 AS
@@ -44,25 +44,30 @@ BEGIN
 END;
 GO;
 
-CREATE OR ALTER PROCEDURE dbo.spCategoriesUpsert
-/* EXEC dbo.spCategoriesUpsert @Id=NEWID(), @Name=N'John Doe', @CreatedAt=SYSDATETIMEOFFSET(), @UpdatedAt=SYSDATETIMEOFFSET(), @OwnerId=# */
+
+
+CREATE OR ALTER PROCEDURE dbo.spCategoriesInsert
     @Id UNIQUEIDENTIFIER,
     @Name NVARCHAR(64),
-    @CreatedAt DATETIMEOFFSET = NULL,
+    @CreatedAt DATETIMEOFFSET,
     @UpdatedAt DATETIMEOFFSET,
     @OwnerId UNIQUEIDENTIFIER
 AS
 BEGIN
-    IF EXISTS(SELECT 1 FROM Categories WHERE Id=@Id)
-        BEGIN
-            UPDATE Categories
-            SET Name = @Name, UpdatedAt = @UpdatedAt, OwnerId = @OwnerId
-            WHERE Id = @Id
-        END
-    ELSE
-        BEGIN
-            INSERT INTO Categories (Id, Name, CreatedAt, UpdatedAt, OwnerId)
-            VALUES (@Id, @Name, ISNULL(@CreatedAt, @UpdatedAt), @UpdatedAt, @OwnerId)
-        END
+    INSERT INTO Categories (Id, Name, CreatedAt, UpdatedAt, OwnerId)
+    VALUES (@Id, @Name, ISNULL(@CreatedAt, @UpdatedAt), @UpdatedAt, @OwnerId)
+END;
+GO;
+
+CREATE OR ALTER PROCEDURE dbo.spCategoriesUpdate
+    @Id UNIQUEIDENTIFIER,
+    @Name NVARCHAR(64),
+    @UpdatedAt DATETIMEOFFSET,
+    @OwnerId UNIQUEIDENTIFIER
+AS
+BEGIN
+    UPDATE Categories
+    SET Name = @Name, UpdatedAt = @UpdatedAt, OwnerId = @OwnerId
+    WHERE Id = @Id
 END;
 GO;

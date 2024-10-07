@@ -69,7 +69,7 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
 
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesUpsert",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesInsert",
             categoryDto,
             transaction: transaction,
             cancellationToken: token,
@@ -84,7 +84,7 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesUpsert",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesUpdate",
             categoryDto,
             transaction: transaction,
             cancellationToken: token,

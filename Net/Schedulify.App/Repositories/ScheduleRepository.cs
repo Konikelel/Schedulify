@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System.Data;
+using Dapper;
 using Schedulify.App.Attributes;
 using Schedulify.App.Database;
 using Schedulify.App.Dtos;
@@ -44,10 +45,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
-            "SELECT COUNT(1) FROM Categories WHERE Id = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition("dbo.spSchedulesCount",
+            new { Id = id},
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
 
@@ -55,10 +56,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.QuerySingleOrDefaultAsync<ScheduleEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE Id = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QuerySingleOrDefaultAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
+            new { Id = id, ReturnFirst = 1 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
 
@@ -66,10 +67,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE CalendarId = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
+            new { CalendarId = id, ReturnFirst = 0 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
     
@@ -77,10 +78,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE CategoryId = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
+            new { CategoryId = id, UseCategoryId = 1, ReturnFirst = 0 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
     
@@ -88,10 +89,10 @@ public class ScheduleRepository : IScheduleRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE OwnerId = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
+            new { OwnerId = id, ReturnFirst = 0 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
 
@@ -100,16 +101,11 @@ public class ScheduleRepository : IScheduleRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsync(new CommandDefinition(
-            """
-            INSERT INTO Schedules (
-            Id, CalendarId, CategoryId, TimeStart, TimeEnd, Frequency, Title, Description, Link, OwnerId, UpdatedAt, CreatedAt
-            ) VALUES (
-            @Id, @CalendarId, @CategoryId, @TimeStart, @TimeEnd, @Frequency, @Title,  @Description, @Link, @OwnerId, @UpdatedAt, @CreatedAt)
-            """,
+        var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesInsert",
             scheduleDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -120,16 +116,11 @@ public class ScheduleRepository : IScheduleRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsync(new CommandDefinition(
-            """
-            UPDATE Schedules SET 
-            CalendarId = @CalendarId, CategoryId = @CategoryId, TimeStart = @TimeStart, TimeEnd = @TimeEnd, Frequency = @Frequency, 
-            Title = @Title, Description = @Description, Link = @Link, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt
-            WHERE Id = @Id
-            """,
+        var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesUpdate",
             scheduleDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -140,11 +131,11 @@ public class ScheduleRepository : IScheduleRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsync(new CommandDefinition(
-            "UPDATE Schedules SET CategoryId = @NewId WHERE CategoryId = @Id",
-            new { Id = id, NewId = newId },
+        var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesUpdateCategory",
+            new { OldId = id, NewId = newId },
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -155,11 +146,11 @@ public class ScheduleRepository : IScheduleRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsync(new CommandDefinition(
-            "DELETE FROM Schedules WHERE Id = @Id",
+        var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesDelete",
             new { Id = id },
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -170,11 +161,11 @@ public class ScheduleRepository : IScheduleRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsync(new CommandDefinition(
-            "DELETE FROM Schedules WHERE CalendarId = @Id",
-            new { Id = id },
+        var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesDelete",
+            new { CalendarId = id },
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;

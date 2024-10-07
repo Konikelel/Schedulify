@@ -73,7 +73,7 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsUpsert",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsInsert",
             calendarDto,
             transaction: transaction,
             cancellationToken: token,
@@ -88,7 +88,7 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsUpsert",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsUpdate",
             calendarDto,
             transaction: transaction,
             cancellationToken: token,
