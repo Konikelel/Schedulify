@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/createTable/CreateTableCalendars.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/createTable/CreateTableCategories.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/createTable/CreateTableSchedules.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/storedProcedures/StoredProceduresCalendars.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/storedProcedures/StoredProceduresCategories.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/storedProcedures/StoredProceduresSchedules.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTable/CreateTableCalendars.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTable/CreateTableCategories.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/CreateTable/CreateTableSchedules.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/StoredProcedures/StoredProceduresCalendars.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/StoredProcedures/StoredProceduresCategories.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/Schedulify.App/Database/Scripts/StoredProcedures/StoredProceduresSchedules.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/Schedulify.App/Repositories/CalendarRepository.cs" dialect="GenericSQL" />
     <file url="PROJECT" dialect="TSQL" />
   </component>
