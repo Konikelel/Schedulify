@@ -1,3 +1,4 @@
+using System.Data;
 using Dapper;
 using Schedulify.App.Attributes;
 using Schedulify.App.Database;
@@ -37,9 +38,10 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
         return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
-            "SELECT COUNT(1) FROM Calendars WHERE Id = @Id",
+            "EXEC dbo.spCalendarsCount",
             new { Id = id },
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
     
@@ -48,10 +50,10 @@ public class CalendarRepository : ICalendarRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
-        return await connection.QuerySingleOrDefaultAsync<CalendarEntity>(new CommandDefinition(
-            "SELECT * FROM Calendars WHERE Id = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QuerySingleOrDefaultAsync<CalendarEntity>(new CommandDefinition("dbo.spCalendarsGet",
+            new { Id = id, ReturnFirst = 1 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
     
@@ -59,10 +61,10 @@ public class CalendarRepository : ICalendarRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
-        return await connection.QueryAsync<CalendarEntity>(new CommandDefinition(
-            "SELECT * FROM Calendars WHERE OwnerId = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QueryAsync<CalendarEntity>(new CommandDefinition("dbo.spCalendarsGet",
+            new { OwnerId = id, ReturnFirst = 1 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
 
@@ -71,11 +73,11 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "INSERT INTO Calendars (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsUpsert",
             calendarDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -86,11 +88,11 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "UPDATE Calendars SET Name = @Name, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt WHERE Id = @Id",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsUpsert",
             calendarDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -101,11 +103,11 @@ public class CalendarRepository : ICalendarRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "DELETE FROM Calendars WHERE Id = @Id",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCalendarsDelete",
             new { Id = id },
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;

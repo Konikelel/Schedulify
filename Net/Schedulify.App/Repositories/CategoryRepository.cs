@@ -1,3 +1,4 @@
+using System.Data;
 using Dapper;
 using Schedulify.App.Attributes;
 using Schedulify.App.Database;
@@ -36,7 +37,7 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
         return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
-            "SELECT COUNT(1) FROM Categories WHERE Id = @Id",
+            "dbo.spCategoriesCount",
             new { Id = id },
             cancellationToken: token
         ));
@@ -46,10 +47,10 @@ public class CategoryRepository : ICategoryRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.QuerySingleOrDefaultAsync<CategoryEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE Id = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QuerySingleOrDefaultAsync<CategoryEntity>(new CommandDefinition("dbo.spCategoriesGet",
+            new { Id = id, ReturnFirst = 1 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
     
@@ -57,10 +58,10 @@ public class CategoryRepository : ICategoryRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
-        return await connection.QueryAsync<CategoryEntity>(new CommandDefinition(
-            "SELECT * FROM Categories WHERE OwnerId = @Id",
-            new { Id = id },
-            cancellationToken: token
+        return await connection.QueryAsync<CategoryEntity>(new CommandDefinition("dbo.spCategoriesGet",
+            new { OwnerId = id, ReturnFirst = 1 },
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
     }
 
@@ -69,11 +70,11 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
 
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "INSERT INTO Categories (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesUpsert",
             categoryDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -84,11 +85,11 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "UPDATE Categories SET Name = @Name, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt WHERE Id = @Id",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesUpsert",
             categoryDto,
             transaction: transaction,
-            cancellationToken: token
+            cancellationToken: token,
+            commandType: CommandType.StoredProcedure
         ));
         
         return result > 0;
@@ -100,7 +101,7 @@ public class CategoryRepository : ICategoryRepository
         using var transaction = connection.BeginTransaction();
         
         var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "DELETE FROM Categories WHERE Id = @Id",
+            "dbo.spCategoriesDelete",
             new { Id = id },
             transaction: transaction,
             cancellationToken: token
