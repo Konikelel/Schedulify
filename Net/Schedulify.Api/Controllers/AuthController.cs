@@ -18,12 +18,12 @@ public class AuthController: ControllerBase
     [HttpPost(ApiEndpoints.Users.Register)]
     public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
     {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 
     [HttpPost(ApiEndpoints.Users.Login)]
     public async Task<IActionResult> Login([FromBody] LoginUserRequest request)
     {
-        throw NotImplementedException();
+        throw new NotImplementedException();
     }
 }
