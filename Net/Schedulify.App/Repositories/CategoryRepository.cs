@@ -36,8 +36,7 @@ public class CategoryRepository : ICategoryRepository
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
-        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition(
-            "dbo.spCategoriesCount",
+        return await connection.ExecuteScalarAsync<bool>(new CommandDefinition("dbo.spCategoriesCount",
             new { Id = id },
             cancellationToken: token
         ));
