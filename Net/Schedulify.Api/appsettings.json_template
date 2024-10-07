@@ -8,8 +8,13 @@
   "Database": {
     "ConnectionString": "Server=#,#;User Id=#;Password=#;Database=#;TrustServerCertificate=true;MultipleActiveResultSets=true"
   },
+  "Jwt": {
+      "Key": "#"
+      "Issuer": "#",
+      "Audience": "#",
+    },
   "Cors": {
-    "AllowedOrigins": ["#"],
+    "AllowedOrigins": "#",
     "AllowedHeaders": ["Content-Type", "Authorization"],
     "AllowedMethods": ["GET", "POST", "PUT", "DELETE"]
   },

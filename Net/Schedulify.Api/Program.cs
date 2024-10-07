@@ -1,3 +1,6 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Schedulify.Api;
 using Schedulify.App;
 
@@ -7,16 +10,29 @@ Console.WriteLine("Building the application...");
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
-builder.Services.AddCors(options =>
+builder.Services.AddAuthentication(x =>
 {
-    options.AddPolicy(name: "SchedulifyIntegrationPolicy",
-        policy =>
-        {
-            policy.WithOrigins(config["Cors:AllowedOrigins"]!)
-                .WithHeaders(config["Cors:AllowedHeaders"]!)
-                .WithMethods(config["Cors:AllowedMethods"]!);
-        });
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.TokenValidationParameters = new TokenValidationParameters {
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!)),
+            ValidIssuer = config["Jwt:Issuer"],
+            ValidAudience = config["Jwt:Audience"],
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidateIssuer = true,
+            ValidateAudience = true
+    };
 });
+
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("Admin", policy => policy.RequireRole("Admin"))
+    .AddPolicy("User", policy => policy.RequireRole("User"));
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
