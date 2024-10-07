@@ -56,8 +56,7 @@ public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
             .MaximumLength(256);
 
         RuleFor(x => x.CategoryId)
-            .NotEmpty()
-            .MustAsync(CategoryIdExists)
+            .MustAsync(CategoryIdValid)
             .WithMessage("Category does not exist.");
 
         RuleFor(x => x.OwnerId)
@@ -78,9 +77,9 @@ public abstract class ScheduleBaseValidator<TDto> : AbstractValidator<TDto>
         return await _calendarRepository.ExistsByIdAsync(id, token);
     }
     
-    private async Task<bool> CategoryIdExists(Guid id, CancellationToken token)
+    private async Task<bool> CategoryIdValid(Guid? id, CancellationToken token)
     {
-        return await _categoryRepository.ExistsByIdAsync(id, token);
+        return id == null || await _categoryRepository.ExistsByIdAsync(id.Value, token);
     }
     
     protected async Task<bool> IdExists(Guid id, CancellationToken token)
