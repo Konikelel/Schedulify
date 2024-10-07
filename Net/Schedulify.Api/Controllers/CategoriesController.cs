@@ -12,7 +12,7 @@ public class CategoriesController: ControllerBase
 {
     private readonly ICategoryService _categoryService;
     private readonly IMapper _mapper;
-    private readonly string tempOwnerId = "00000000-0000-0000-0000-000000000000";
+    private const string TempOwnerId = "00000000-0000-0000-0000-000000000000";
 
     public CategoriesController(
         ICategoryService categoryService,
@@ -23,7 +23,7 @@ public class CategoriesController: ControllerBase
     }
     
     [HttpGet(ApiEndpoints.Categories.Get)]
-    public async Task<IActionResult> Get(Guid id, CancellationToken token = default)
+    public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken token = default)
     {
         var model = await _categoryService.GetByIdAsync(id, token);
         
@@ -46,9 +46,9 @@ public class CategoriesController: ControllerBase
     }
     
     [HttpPost(ApiEndpoints.Categories.Create)]
-    public async Task<IActionResult> Create([FromBody] CreateCategoryRequest category, CancellationToken token = default)
+    public async Task<IActionResult> Create([FromBody] CreateCategoryRequest request, CancellationToken token = default)
     {
-        var dto = _mapper.MapUsingItems<CreateCategoryDto>(category, new {OwnerId = tempOwnerId});
+        var dto = _mapper.MapUsingItems<CreateCategoryDto>(request, new {OwnerId = TempOwnerId});
         var result = await _categoryService.CreateAsync(dto, token);
 
         if (!result)
@@ -61,9 +61,9 @@ public class CategoriesController: ControllerBase
     }
     
     [HttpPut(ApiEndpoints.Categories.Update)]
-    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCategoryRequest category, CancellationToken token = default)
+    public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCategoryRequest request, CancellationToken token = default)
     {
-        var dto = _mapper.MapUsingItems<UpdateCategoryDto>(category, new {Id = id, OwnerId = tempOwnerId});
+        var dto = _mapper.MapUsingItems<UpdateCategoryDto>(request, new {Id = id, OwnerId = TempOwnerId});
         var result = await _categoryService.UpdateAsync(dto, token);
         
         if (result == null)
