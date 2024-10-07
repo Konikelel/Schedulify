@@ -16,9 +16,9 @@ public interface ICalendarRepository
     
     public Task<IEnumerable<CalendarEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<bool> CreateAsync(CreateCalendarDto calendar, CancellationToken token = default);
+    public Task<bool> CreateAsync(CreateCalendarDto calendarDto, CancellationToken token = default);
     
-    public Task<bool> UpdateAsync(UpdateCalendarDto calendar, CancellationToken token = default);
+    public Task<bool> UpdateAsync(UpdateCalendarDto calendarDto, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
@@ -66,14 +66,14 @@ public class CalendarRepository : ICalendarRepository
         ));
     }
 
-    public async Task<bool> CreateAsync(CreateCalendarDto calendar, CancellationToken token = default)
+    public async Task<bool> CreateAsync(CreateCalendarDto calendarDto, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
         var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "INSERT INTO Calendars (Id, Name, OwnerId, CreatedAt, UpdatedAt) VALUES (@Id, @Name, @OwnerId, @CreatedAt, @UpdatedAt)",
-            calendar,
+            calendarDto,
             transaction: transaction,
             cancellationToken: token
         ));
@@ -81,14 +81,14 @@ public class CalendarRepository : ICalendarRepository
         return result > 0;
     }
 
-    public async Task<bool> UpdateAsync(UpdateCalendarDto calendar, CancellationToken token = default)
+    public async Task<bool> UpdateAsync(UpdateCalendarDto calendarDto, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
         var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
             "UPDATE Calendars SET Name = @Name, OwnerId = @OwnerId, UpdatedAt = @UpdatedAt WHERE Id = @Id",
-            calendar,
+            calendarDto,
             transaction: transaction,
             cancellationToken: token
         ));

@@ -17,9 +17,9 @@ public interface IScheduleRepository
     
     public Task<IEnumerable<ScheduleEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<bool> CreateAsync(ScheduleEntity schedule, CancellationToken token = default);
+    public Task<bool> CreateAsync(ScheduleEntity scheduleDto, CancellationToken token = default);
     
-    public Task<bool> UpdateAsync(ScheduleEntity schedule, CancellationToken token = default);
+    public Task<bool> UpdateAsync(ScheduleEntity scheduleDto, CancellationToken token = default);
     
     public Task<bool> UpdateCategoryIdAsync(Guid id, Guid newId, CancellationToken token = default);
     
@@ -57,12 +57,12 @@ public class ScheduleRepository : IScheduleRepository
         return this._schedules.AsEnumerable();
     }
 
-    public async Task<bool> CreateAsync(ScheduleEntity schedule, CancellationToken token = default)
+    public async Task<bool> CreateAsync(ScheduleEntity scheduleDto, CancellationToken token = default)
     {
         return true;
     }
 
-    public async Task<bool> UpdateAsync(ScheduleEntity schedule, CancellationToken token = default)
+    public async Task<bool> UpdateAsync(ScheduleEntity scheduleDto, CancellationToken token = default)
     {
         return true;
     }
