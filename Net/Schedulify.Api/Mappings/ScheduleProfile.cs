@@ -23,7 +23,7 @@ public class ScheduleProfile : Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<ScheduleEntity, ScheduleModel>()
-            .ReverseMap(); // MODEL NOT EXTENDED
+            .ReverseMap();
         
         CreateMap<ScheduleModel, CreateScheduleResponses>();
         CreateMap<ScheduleModel, UpdateScheduleRequest>();

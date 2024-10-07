@@ -11,8 +11,4 @@ public class CalendarModel
     public required DateTimeOffset UpdatedAt { get; set; }
     
     public required Guid OwnerId { get; set; }
-    
-    public IEnumerable<CategoryModel> Categories { get; set; } = Enumerable.Empty<CategoryModel>();
-    
-    public IEnumerable<ScheduleModel> Schedules { get; set; } = Enumerable.Empty<ScheduleModel>();
 }

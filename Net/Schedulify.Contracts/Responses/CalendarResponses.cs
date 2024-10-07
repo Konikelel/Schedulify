@@ -13,9 +13,4 @@ public class CreateCalendarResponse : AbstractBaseCalendarResponse;
 
 public class UpdateCalendarResponse: AbstractBaseCalendarResponse;
 
-public class GetCalendarResponse: AbstractBaseCalendarResponse
-{
-    public required IEnumerable<CategoryModel> Categories { get; init; }
-    
-    public required IEnumerable<ScheduleModel> Schedules { get; init; }
-}
+public class GetCalendarResponse: AbstractBaseCalendarResponse;

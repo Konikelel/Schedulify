@@ -23,7 +23,7 @@ public class CategoryProfile : Profile
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
         
         CreateMap<CategoryEntity, CategoryModel>()
-            .ReverseMap(); // MODEL NOT EXTENDED
+            .ReverseMap();
 
         CreateMap<CategoryModel, GetCategoryResponse>();
         CreateMap<IEnumerable<CategoryModel>, GetByUserCategoryResponse>()

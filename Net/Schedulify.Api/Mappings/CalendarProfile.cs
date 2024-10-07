@@ -21,8 +21,9 @@ public class CalendarProfile: Profile
             .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
-        
-        CreateMap<CalendarModel, CategoryEntity>(); //MODEL EXTENDED
+
+        CreateMap<CalendarModel, CategoryEntity>()
+            .ReverseMap();
         
         CreateMap<CalendarModel, CreateCalendarResponse>();
         CreateMap<CalendarModel, UpdateCalendarResponse>();

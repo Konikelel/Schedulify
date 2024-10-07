@@ -11,22 +11,11 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        CreateMap<CreateUserRequest, CreateUserDto>()
-            .ForMemberNewGuid(dest => dest.Id)
-            .ForMemberFromItem(dest => dest.PasswordHash)
-            .ForMemberFromItem(dest => dest.PasswordSalt)
-            .ForMemberDateTimeOffsetNow(dest => dest.CreatedAt)
-            .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
-
-        CreateMap<UpdateUserRequest, UpdateUserDto>()
-            .ForMemberFromItem(dest => dest.Id)
-            .ForMemberFromItem(dest => dest.PasswordHash)
-            .ForMemberFromItem(dest => dest.PasswordSalt)
-            .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
+        //TODO: Add mapping for UserRequests
         
         CreateMap<ScheduleEntity, ScheduleModel>()
-            .ReverseMap(); // MODEL NOT EXTENDED
+            .ReverseMap();
         
-        //TODO: Add mapping for UserBaseResponses
+        //TODO: Add mapping for UserResponses
     }
 }
