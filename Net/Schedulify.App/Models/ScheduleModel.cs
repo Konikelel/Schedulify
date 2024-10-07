@@ -8,7 +8,7 @@ public class ScheduleModel
     
     public required Guid CalendarId { get; set; }
     
-    public required Guid CategoryId { get; set; }
+    public Guid? CategoryId { get; set; }
     
     public required DateTimeOffset TimeStart { get; set; }
     

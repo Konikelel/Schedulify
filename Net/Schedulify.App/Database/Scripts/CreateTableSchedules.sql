@@ -4,7 +4,7 @@ GO;
 CREATE TABLE Schedules (
     Id          UNIQUEIDENTIFIER  PRIMARY KEY,
     CalendarId  UNIQUEIDENTIFIER  NOT NULL,
-    CategoryId  UNIQUEIDENTIFIER  NOT NULL,
+    CategoryId  UNIQUEIDENTIFIER,
     TimeStart   DATETIMEOFFSET    NOT NULL,
     TimeEnd     DATETIMEOFFSET    NOT NULL,
     Frequency   INT               NOT NULL,
