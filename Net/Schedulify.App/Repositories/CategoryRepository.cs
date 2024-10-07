@@ -99,8 +99,7 @@ public class CategoryRepository : ICategoryRepository
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
-        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition(
-            "dbo.spCategoriesDelete",
+        var result = await connection.ExecuteAsyncTransaction(new CommandDefinition("dbo.spCategoriesDelete",
             new { Id = id },
             transaction: transaction,
             cancellationToken: token
