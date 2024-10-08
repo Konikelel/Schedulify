@@ -23,9 +23,7 @@ public class CalendarProfile: Profile
 
         CreateMap<CalendarModel, CategoryEntity>()
             .ReverseMap();
-        CreateMap<IEnumerable<CategoryModel>, GetMultipleCategoryResponse>()
-            .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src));
-        
+
         CreateMap<CalendarModel, CreateCalendarResponse>();
         CreateMap<CalendarModel, UpdateCalendarResponse>();
     }
