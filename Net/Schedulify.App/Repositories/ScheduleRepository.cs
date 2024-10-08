@@ -25,7 +25,7 @@ public interface IScheduleRepository
     
     public Task<bool> UpdateAsync(UpdateScheduleDto scheduleDto, CancellationToken token = default);
     
-    public Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid newCategoryId, CancellationToken token = default);
+    public Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid? newCategoryId, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
     
@@ -126,7 +126,7 @@ public class ScheduleRepository : IScheduleRepository
         return result > 0;
     }
     
-    public async Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid newCategoryId, CancellationToken token = default)
+    public async Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid? newCategoryId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();

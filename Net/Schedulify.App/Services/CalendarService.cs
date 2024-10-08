@@ -26,17 +26,20 @@ public interface ICalendarService
 public class CalendarService : ICalendarService
 {
     private readonly ICalendarRepository _calendarRepository;
+    private readonly IScheduleRepository _scheduleRepository;
     private readonly IValidator<CreateCalendarDto> _createCalendarDtoValidator;
     private readonly IValidator<UpdateCalendarDto> _updateCalendarDtoValidator;
     private readonly IMapper _mapper;
     
     public CalendarService(
         ICalendarRepository calendarRepository,
+        IScheduleRepository scheduleRepository,
         IValidator<CreateCalendarDto> createCalendarDtoValidator,
         IValidator<UpdateCalendarDto> updateCalendarDtoValidator,
         IMapper mapper)
     {
         _calendarRepository = calendarRepository;
+        _scheduleRepository = scheduleRepository;
         _createCalendarDtoValidator = createCalendarDtoValidator;
         _updateCalendarDtoValidator = updateCalendarDtoValidator;
         _mapper = mapper;
@@ -72,6 +75,7 @@ public class CalendarService : ICalendarService
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
-        return await _calendarRepository.DeleteByIdAsync(id, token);
+        return await _calendarRepository.DeleteByIdAsync(id, token) &&
+               await _scheduleRepository.DeleteByCalendarIdAsync(id, token);
     }
 }

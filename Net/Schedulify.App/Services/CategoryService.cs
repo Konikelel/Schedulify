@@ -25,17 +25,20 @@ public interface ICategoryService
 public class CategoryService: ICategoryService
 {
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IScheduleRepository _scheduleRepository;
     private readonly IValidator<CreateCategoryDto> _createCategoryDtoValidator;
     private readonly IValidator<UpdateCategoryDto> _updateCategoryDtoValidator;
     private readonly IMapper _mapper;
     
     public CategoryService(
         ICategoryRepository categoryRepository,
+        IScheduleRepository scheduleRepository,
         IValidator<CreateCategoryDto> createCategoryDtoValidator,
         IValidator<UpdateCategoryDto> updateCategoryDtoValidator,
         IMapper mapper)
     {
         _categoryRepository = categoryRepository;
+        _scheduleRepository = scheduleRepository;
         _createCategoryDtoValidator = createCategoryDtoValidator;
         _updateCategoryDtoValidator = updateCategoryDtoValidator;
         _mapper = mapper;
@@ -71,6 +74,7 @@ public class CategoryService: ICategoryService
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
-        return await _categoryRepository.DeleteByIdAsync(id, token);
+        return await _categoryRepository.DeleteByIdAsync(id, token) &&
+               await _scheduleRepository.UpdateCategoryIdAsync(id, null, token);
     }
 }
