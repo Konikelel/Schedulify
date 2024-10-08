@@ -15,7 +15,7 @@ public interface ICategoryRepository
     
     public Task<CategoryEntity?> GetByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default);
     
     public Task<bool> CreateAsync(CreateCategoryDto categoryDto, CancellationToken token = default);
     
@@ -53,12 +53,12 @@ public class CategoryRepository : ICategoryRepository
         ));
     }
     
-    public async Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<CategoryEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
         return await connection.QueryAsync<CategoryEntity>(new CommandDefinition("dbo.spCategoriesGet",
-            new { OwnerId = id, ReturnFirst = 1 },
+            new { OwnerId = ownerId, ReturnFirst = 1 },
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
         ));

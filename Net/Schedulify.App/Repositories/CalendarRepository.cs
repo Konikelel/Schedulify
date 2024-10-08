@@ -15,7 +15,7 @@ public interface ICalendarRepository
     
     public Task<CalendarEntity?> GetByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<IEnumerable<CalendarEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<CalendarEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default);
     
     public Task<bool> CreateAsync(CreateCalendarDto calendarDto, CancellationToken token = default);
     
@@ -57,12 +57,12 @@ public class CalendarRepository : ICalendarRepository
         ));
     }
     
-    public async Task<IEnumerable<CalendarEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<CalendarEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
 
         return await connection.QueryAsync<CalendarEntity>(new CommandDefinition("dbo.spCalendarsGet",
-            new { OwnerId = id, ReturnFirst = 1 },
+            new { OwnerId = ownerId, ReturnFirst = 1 },
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
         ));
