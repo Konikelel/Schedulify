@@ -1,4 +1,4 @@
-﻿DROP TABLE Categories;
+﻿DROP TABLE IF EXISTS Categories;
 GO;
 
 CREATE TABLE Categories (
