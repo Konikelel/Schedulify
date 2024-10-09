@@ -9,10 +9,10 @@
     "ConnectionString": "Server=#,#;User Id=#;Password=#;Database=#;TrustServerCertificate=true;MultipleActiveResultSets=true"
   },
   "Jwt": {
-      "Key": "#"
-      "Issuer": "#",
-      "Audience": "#",
-    },
+    "Key": "#"
+    "Issuer": "#",
+    "Audience": "#",
+  },
   "Cors": {
     "AllowedOrigins": "#",
     "AllowedHeaders": ["Content-Type", "Authorization"],
