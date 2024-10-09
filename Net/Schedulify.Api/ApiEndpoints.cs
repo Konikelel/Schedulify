@@ -36,12 +36,4 @@ public static class ApiEndpoints
         public const string Update = $"{Base}/{{id:guid}}";
         public const string Delete = $"{Base}/{{id:guid}}";
     }
-
-    public static class Users
-    {
-        private const string Base = $"{ApiBase}/auth";
-        
-        public const string Login = $"{Base}/login";
-        public const string Register = $"{Base}/regiser";
-    }
 }
