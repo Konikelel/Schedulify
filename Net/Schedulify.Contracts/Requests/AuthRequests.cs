@@ -1,13 +1,13 @@
 namespace Schedulify.Contracts.Requests;
 
-public class LoginUserRequest
+public class LoginRequest
 {
     public required string UsernameOrEmail { get; init; }
     
     public required string Password { get; init; }
 }
 
-public class RegisterUserRequest
+public class RegisterRequest
 {
     public required string Username { get; init; }
     
