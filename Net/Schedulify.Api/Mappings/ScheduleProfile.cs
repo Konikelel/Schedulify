@@ -24,6 +24,9 @@ public class ScheduleProfile : Profile
         
         CreateMap<ScheduleEntity, ScheduleModel>()
             .ReverseMap();
+        CreateMap<IEnumerable<ScheduleModel>, GetMultipleScheduleResponse>()
+            .ForMember(dest => dest.Schedules, opt => opt.MapFrom(src => src));
+
         
         CreateMap<ScheduleModel, CreateScheduleResponses>();
         CreateMap<ScheduleModel, UpdateScheduleRequest>();

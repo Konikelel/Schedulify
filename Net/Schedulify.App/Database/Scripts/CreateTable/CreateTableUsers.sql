@@ -1,4 +1,4 @@
-﻿DROP TABLE Users;
+﻿DROP TABLE IF EXISTS Users;
 GO;
 
 CREATE TABLE Users

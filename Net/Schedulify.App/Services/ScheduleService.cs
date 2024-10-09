@@ -1,7 +1,10 @@
+using AutoMapper;
+using FluentValidation;
 using Schedulify.App.Attributes;
 using Schedulify.App.Dtos;
 using Schedulify.App.Enums;
 using Schedulify.App.Models;
+using Schedulify.App.Repositories;
 
 namespace Schedulify.App.Services;
 
@@ -10,39 +13,64 @@ public interface IScheduleService
 {
     public Task<ScheduleModel?> GetByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<IEnumerable<ScheduleModel>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<ScheduleModel>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default);
     
-    public Task<bool> CreateAsync(CreateScheduleDto schedule, CancellationToken token = default);
+    public Task<bool> CreateAsync(CreateScheduleDto scheduleDto, CancellationToken token = default);
     
-    public Task<ScheduleModel?> UpdateAsync(UpdateScheduleDto schedule, CancellationToken token = default);
+    public Task<ScheduleModel?> UpdateAsync(UpdateScheduleDto scheduleDto, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
 
 public class ScheduleService: IScheduleService
 {
-    public Task<ScheduleModel?> GetByIdAsync(Guid id, CancellationToken token = default)
+    private readonly IScheduleRepository _scheduleRepository;
+    private readonly IValidator<CreateScheduleDto> _createScheduleDtoValidator;
+    private readonly IValidator<UpdateScheduleDto> _updateScheduleDtoValidator;
+    private readonly IMapper _mapper;
+    
+    public ScheduleService(
+        IScheduleRepository scheduleRepository,
+        IValidator<CreateScheduleDto> createScheduleDtoValidator,
+        IValidator<UpdateScheduleDto> updateScheduleDtoValidator,
+        IMapper mapper)
     {
-        throw new NotImplementedException();
+        _scheduleRepository = scheduleRepository;
+        _createScheduleDtoValidator = createScheduleDtoValidator;
+        _updateScheduleDtoValidator = updateScheduleDtoValidator;
+        _mapper = mapper;
+    }
+    
+    public async Task<ScheduleModel?> GetByIdAsync(Guid id, CancellationToken token = default)
+    {
+        var entity = await _scheduleRepository.GetByIdAsync(id, token);
+        var model = _mapper.Map<ScheduleModel>(entity);
+        return model;
     }
 
-    public Task<IEnumerable<ScheduleModel>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<ScheduleModel>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        var entities = await _scheduleRepository.GetByOwnerIdAsync(ownerId, token);
+        var models = _mapper.Map<IEnumerable<ScheduleModel>>(entities);
+        return models;
     }
 
-    public Task<bool> CreateAsync(CreateScheduleDto schedule, CancellationToken token = default)
+    public async Task<bool> CreateAsync(CreateScheduleDto scheduleDto, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await _createScheduleDtoValidator.ValidateAndThrowAsync(scheduleDto, token);
+        return await _scheduleRepository.CreateAsync(scheduleDto, token);
     }
 
-    public Task<ScheduleModel?> UpdateAsync(UpdateScheduleDto schedule, CancellationToken token = default)
+    public async Task<ScheduleModel?> UpdateAsync(UpdateScheduleDto scheduleDto, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        await _updateScheduleDtoValidator.ValidateAndThrowAsync(scheduleDto, token);
+        var result = await _scheduleRepository.UpdateAsync(scheduleDto, token);
+        
+        return result ? await GetByIdAsync(scheduleDto.Id, token) : null;
     }
 
-    public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
+    public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
-        throw new NotImplementedException();
+        return await _scheduleRepository.DeleteByIdAsync(id, token);
     }
 }

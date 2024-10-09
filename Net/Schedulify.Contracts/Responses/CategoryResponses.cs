@@ -9,7 +9,7 @@ public abstract class AbstractBaseCategoryResponse
 
 public class GetCategoryResponse: AbstractBaseCategoryResponse;
 
-public class GetByUserCategoryResponse
+public class GetMultipleCategoryResponse
 {
     public required IEnumerable<GetCategoryResponse> Categories { get; init; }
 }

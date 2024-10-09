@@ -1,4 +1,4 @@
-﻿DROP TABLE Schedules;
+﻿DROP TABLE IF EXISTS Schedules;
 GO;
 
 CREATE TABLE Schedules (

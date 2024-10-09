@@ -1,4 +1,4 @@
-﻿DROP TABLE FrequencyType;
+﻿DROP TABLE IF EXISTS FrequencyType;
 GO;
 
 CREATE TABLE FrequencyType (

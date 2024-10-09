@@ -41,7 +41,7 @@ public class CategoriesController: ControllerBase
     {
         var models = await _categoryService.GetByOwnerIdAsync(id, token);
         
-        var response = _mapper.Map<GetByUserCategoryResponse>(models);
+        var response = _mapper.Map<GetMultipleCategoryResponse>(models);
         return Ok(response);
     }
     

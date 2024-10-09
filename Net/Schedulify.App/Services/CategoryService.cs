@@ -13,11 +13,11 @@ public interface ICategoryService
 {
     public Task<CategoryModel?> GetByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<IEnumerable<CategoryModel>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<CategoryModel>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default);
     
-    public Task<bool> CreateAsync(CreateCategoryDto category, CancellationToken token = default);
+    public Task<bool> CreateAsync(CreateCategoryDto categoryDto, CancellationToken token = default);
     
-    public Task<CategoryModel?> UpdateAsync(UpdateCategoryDto category, CancellationToken token = default);
+    public Task<CategoryModel?> UpdateAsync(UpdateCategoryDto categoryDto, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
 }
@@ -25,17 +25,20 @@ public interface ICategoryService
 public class CategoryService: ICategoryService
 {
     private readonly ICategoryRepository _categoryRepository;
+    private readonly IScheduleRepository _scheduleRepository;
     private readonly IValidator<CreateCategoryDto> _createCategoryDtoValidator;
     private readonly IValidator<UpdateCategoryDto> _updateCategoryDtoValidator;
     private readonly IMapper _mapper;
     
     public CategoryService(
         ICategoryRepository categoryRepository,
+        IScheduleRepository scheduleRepository,
         IValidator<CreateCategoryDto> createCategoryDtoValidator,
         IValidator<UpdateCategoryDto> updateCategoryDtoValidator,
         IMapper mapper)
     {
         _categoryRepository = categoryRepository;
+        _scheduleRepository = scheduleRepository;
         _createCategoryDtoValidator = createCategoryDtoValidator;
         _updateCategoryDtoValidator = updateCategoryDtoValidator;
         _mapper = mapper;
@@ -48,29 +51,30 @@ public class CategoryService: ICategoryService
         return model;
     }
 
-    public async Task<IEnumerable<CategoryModel>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<CategoryModel>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default)
     {
-        var entities = await _categoryRepository.GetByOwnerIdAsync(id, token);
+        var entities = await _categoryRepository.GetByOwnerIdAsync(ownerId, token);
         var models = _mapper.Map<IEnumerable<CategoryModel>>(entities);
         return models;
     }
 
-    public async Task<bool> CreateAsync(CreateCategoryDto category, CancellationToken token = default)
+    public async Task<bool> CreateAsync(CreateCategoryDto categoryDto, CancellationToken token = default)
     {
-        await _createCategoryDtoValidator.ValidateAndThrowAsync(category, token);
-        return await _categoryRepository.CreateAsync(category, token);
+        await _createCategoryDtoValidator.ValidateAndThrowAsync(categoryDto, token);
+        return await _categoryRepository.CreateAsync(categoryDto, token);
     }
 
-    public async Task<CategoryModel?> UpdateAsync(UpdateCategoryDto category, CancellationToken token = default)
+    public async Task<CategoryModel?> UpdateAsync(UpdateCategoryDto categoryDto, CancellationToken token = default)
     {
-        await _updateCategoryDtoValidator.ValidateAndThrowAsync(category, token);
-        var result = await _categoryRepository.UpdateAsync(category, token);
+        await _updateCategoryDtoValidator.ValidateAndThrowAsync(categoryDto, token);
+        var result = await _categoryRepository.UpdateAsync(categoryDto, token);
         
-        return result ? await GetByIdAsync(category.Id, token) : null;
+        return result ? await GetByIdAsync(categoryDto.Id, token) : null;
     }
 
     public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default)
     {
-        return await _categoryRepository.DeleteByIdAsync(id, token);
+        return await _categoryRepository.DeleteByIdAsync(id, token) &&
+               await _scheduleRepository.UpdateCategoryIdAsync(id, null, token);
     }
 }

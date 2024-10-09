@@ -1,4 +1,4 @@
-﻿DROP TABLE Calendars;
+﻿DROP TABLE IF EXISTS Calendars;
 GO;
 
 CREATE TABLE Calendars (

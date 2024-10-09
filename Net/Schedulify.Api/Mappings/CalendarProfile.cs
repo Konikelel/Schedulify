@@ -16,15 +16,16 @@ public class CalendarProfile: Profile
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.CreatedAt)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
-
         CreateMap<UpdateCalendarRequest, UpdateCalendarDto>()
             .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
 
-        CreateMap<CalendarModel, CategoryEntity>()
+        CreateMap<CalendarModel, CalendarEntity>()
             .ReverseMap();
-        
+        CreateMap<IEnumerable<CalendarModel>, GetMultipleCalendarResponse>()
+            .ForMember(dest => dest.Calendars, opt => opt.MapFrom(src => src));
+
         CreateMap<CalendarModel, CreateCalendarResponse>();
         CreateMap<CalendarModel, UpdateCalendarResponse>();
     }

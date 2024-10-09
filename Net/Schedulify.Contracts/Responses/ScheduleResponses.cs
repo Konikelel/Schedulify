@@ -23,8 +23,13 @@ public abstract class AbstractBaseScheduleResponses
     public string? Link { get; init; }
 }
 
+public class GetScheduleResponse : AbstractBaseScheduleResponses;
+
+public class GetMultipleScheduleResponse
+{
+    public required IEnumerable<GetScheduleResponse> Schedules { get; init; }
+}
+
 public class CreateScheduleResponses : AbstractBaseScheduleResponses;
 
 public class UpdateScheduleResponses : AbstractBaseScheduleResponses;
-
-public class GetScheduleResponse : AbstractBaseScheduleResponses;

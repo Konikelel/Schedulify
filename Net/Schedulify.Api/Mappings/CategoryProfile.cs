@@ -16,7 +16,6 @@ public class CategoryProfile : Profile
             .ForMemberFromItem(dest => dest.OwnerId)
             .ForMemberDateTimeOffsetNow(dest => dest.CreatedAt)
             .ForMemberDateTimeOffsetNow(dest => dest.UpdatedAt);
-
         CreateMap<UpdateCategoryRequest, UpdateCategoryDto>()
             .ForMemberFromItem(dest => dest.Id)
             .ForMemberFromItem(dest => dest.OwnerId)
@@ -24,10 +23,10 @@ public class CategoryProfile : Profile
         
         CreateMap<CategoryEntity, CategoryModel>()
             .ReverseMap();
-
-        CreateMap<CategoryModel, GetCategoryResponse>();
-        CreateMap<IEnumerable<CategoryModel>, GetByUserCategoryResponse>()
+        CreateMap<IEnumerable<CategoryModel>, GetMultipleCategoryResponse>()
             .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src));
+        
+        CreateMap<CategoryModel, GetCategoryResponse>();
         CreateMap<CategoryModel, CreateCategoryResponse>();
         CreateMap<CategoryModel, UpdateCategoryResponse>();
     }

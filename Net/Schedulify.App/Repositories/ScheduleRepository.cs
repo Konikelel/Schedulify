@@ -15,21 +15,21 @@ public interface IScheduleRepository
     
     public Task<ScheduleEntity?> GetByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<IEnumerable<ScheduleEntity>> GetByCalendarIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<ScheduleEntity>> GetByCalendarIdAsync(Guid calendarId, CancellationToken token = default);
     
-    public Task<IEnumerable<ScheduleEntity>> GetByCategoryIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<ScheduleEntity>> GetByCategoryIdAsync(Guid categoryId, CancellationToken token = default);
     
-    public Task<IEnumerable<ScheduleEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default);
+    public Task<IEnumerable<ScheduleEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default);
     
     public Task<bool> CreateAsync(CreateScheduleDto scheduleDto, CancellationToken token = default);
     
     public Task<bool> UpdateAsync(UpdateScheduleDto scheduleDto, CancellationToken token = default);
     
-    public Task<bool> UpdateCategoryIdAsync(Guid id, Guid newId, CancellationToken token = default);
+    public Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid? newCategoryId, CancellationToken token = default);
     
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken token = default);
     
-    public Task<bool> DeleteByCalendarIdAsync(Guid id, CancellationToken token = default);
+    public Task<bool> DeleteByCalendarIdAsync(Guid calendarId, CancellationToken token = default);
 }
 
 public class ScheduleRepository : IScheduleRepository
@@ -63,34 +63,34 @@ public class ScheduleRepository : IScheduleRepository
         ));
     }
 
-    public async Task<IEnumerable<ScheduleEntity>> GetByCalendarIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<ScheduleEntity>> GetByCalendarIdAsync(Guid calendarId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
         return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
-            new { CalendarId = id, ReturnFirst = 0 },
+            new { CalendarId = calendarId, ReturnFirst = 0 },
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
         ));
     }
     
-    public async Task<IEnumerable<ScheduleEntity>> GetByCategoryIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<ScheduleEntity>> GetByCategoryIdAsync(Guid categoryId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
         return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
-            new { CategoryId = id, UseCategoryId = 1, ReturnFirst = 0 },
+            new { CategoryId = categoryId, UseCategoryId = 1, ReturnFirst = 0 },
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
         ));
     }
     
-    public async Task<IEnumerable<ScheduleEntity>> GetByOwnerIdAsync(Guid id, CancellationToken token = default)
+    public async Task<IEnumerable<ScheduleEntity>> GetByOwnerIdAsync(Guid ownerId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         
         return await connection.QueryAsync<ScheduleEntity>(new CommandDefinition("dbo.spSchedulesGet",
-            new { OwnerId = id, ReturnFirst = 0 },
+            new { OwnerId = ownerId, ReturnFirst = 0 },
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
         ));
@@ -126,13 +126,13 @@ public class ScheduleRepository : IScheduleRepository
         return result > 0;
     }
     
-    public async Task<bool> UpdateCategoryIdAsync(Guid id, Guid newId, CancellationToken token = default)
+    public async Task<bool> UpdateCategoryIdAsync(Guid oldCategoryId, Guid? newCategoryId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
         var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesUpdateCategory",
-            new { OldId = id, NewId = newId },
+            new { OldId = oldCategoryId, NewId = newCategoryId },
             transaction: transaction,
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
@@ -156,13 +156,13 @@ public class ScheduleRepository : IScheduleRepository
         return result > 0;
     }
     
-    public async Task<bool> DeleteByCalendarIdAsync(Guid id, CancellationToken token = default)
+    public async Task<bool> DeleteByCalendarIdAsync(Guid calendarId, CancellationToken token = default)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync(token);
         using var transaction = connection.BeginTransaction();
         
         var result = await connection.ExecuteAsync(new CommandDefinition("dbo.spSchedulesDelete",
-            new { CalendarId = id },
+            new { CalendarId = calendarId },
             transaction: transaction,
             cancellationToken: token,
             commandType: CommandType.StoredProcedure
