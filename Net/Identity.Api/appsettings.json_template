@@ -1,0 +1,21 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Database": {
+    "ConnectionString": "Server=#,#;User Id=#;Password=#;Database=#;TrustServerCertificate=true;MultipleActiveResultSets=true"
+  },
+  "Jwt": {
+    "Key": "#"
+    "Issuer": "#",
+    "Audience": "#",
+  },
+  "Cors": {
+    "AllowedOrigins": "#",
+    "AllowedHeaders": ["Content-Type", "Authorization"],
+    "AllowedMethods": ["GET", "POST", "PUT", "DELETE"]
+  },
+}

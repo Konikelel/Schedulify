@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.App", "Schedulif
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedulify.Contracts", "Schedulify.Contracts\Schedulify.Contracts.csproj", "{554372C1-8473-4C7C-971A-BE19A4976194}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Api", "Identity.Api\Identity.Api.csproj", "{EE6991AF-7EA6-4987-B3F0-9BD3E2499269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Handler", "Identity.Handler\Identity.Handler.csproj", "{898EFA23-CD12-46A0-B3D5-A2F23BAE4F75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{554372C1-8473-4C7C-971A-BE19A4976194}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{554372C1-8473-4C7C-971A-BE19A4976194}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{554372C1-8473-4C7C-971A-BE19A4976194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6991AF-7EA6-4987-B3F0-9BD3E2499269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6991AF-7EA6-4987-B3F0-9BD3E2499269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6991AF-7EA6-4987-B3F0-9BD3E2499269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6991AF-7EA6-4987-B3F0-9BD3E2499269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{898EFA23-CD12-46A0-B3D5-A2F23BAE4F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{898EFA23-CD12-46A0-B3D5-A2F23BAE4F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{898EFA23-CD12-46A0-B3D5-A2F23BAE4F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{898EFA23-CD12-46A0-B3D5-A2F23BAE4F75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
