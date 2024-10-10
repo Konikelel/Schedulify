@@ -11,6 +11,17 @@ Console.WriteLine("Building the application...");
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "Website", policy =>
+    {
+        policy.WithOrigins(config["Cors:AllowedOrigin"]!)
+              .WithHeaders(config["Cors:AllowedHeaders"]!)
+              .WithMethods(config["Cors:AllowedMethods"]!);
+
+    });
+});
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
