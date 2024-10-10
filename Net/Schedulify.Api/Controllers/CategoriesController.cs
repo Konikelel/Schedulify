@@ -22,8 +22,8 @@ public class CategoriesController: ControllerBase
         _mapper = mapper;
     }
     
-    [HttpGet(ApiEndpoints.Categories.Get)]
-    public async Task<IActionResult> Get([FromRoute] Guid id, CancellationToken token = default)
+    [HttpGet(ApiEndpoints.Categories.GetById)]
+    public async Task<IActionResult> GetById([FromRoute] Guid id, CancellationToken token = default)
     {
         var model = await _categoryService.GetByIdAsync(id, token);
         
@@ -37,9 +37,9 @@ public class CategoriesController: ControllerBase
     }
     
     [HttpGet(ApiEndpoints.Categories.GetByUser)]
-    public async Task<IActionResult> GetByUser([FromQuery] Guid id, CancellationToken token = default)
+    public async Task<IActionResult> GetByUser([FromQuery] Guid userId, CancellationToken token = default)
     {
-        var models = await _categoryService.GetByOwnerIdAsync(id, token);
+        var models = await _categoryService.GetByOwnerIdAsync(userId, token);
         
         var response = _mapper.Map<GetMultipleCategoryResponse>(models);
         return Ok(response);
@@ -57,21 +57,21 @@ public class CategoriesController: ControllerBase
         }
         
         var response = _mapper.Map<CreateCategoryResponse>(dto);
-        return CreatedAtAction(nameof(Get), new { id = dto.Id }, response);
+        return CreatedAtAction(nameof(GetById), new { id = dto.Id }, response);
     }
     
     [HttpPut(ApiEndpoints.Categories.Update)]
     public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateCategoryRequest request, CancellationToken token = default)
     {
         var dto = _mapper.MapUsingItems<UpdateCategoryDto>(request, new {Id = id, OwnerId = TempOwnerId});
-        var result = await _categoryService.UpdateAsync(dto, token);
+        var model = await _categoryService.UpdateAsync(dto, token);
         
-        if (result == null)
+        if (model == null)
         {
             return StatusCode(500, new { Message = "An unexpected error occurred while updating category." });
         }
         
-        var response = _mapper.Map<UpdateCategoryResponse>(dto);
+        var response = _mapper.Map<UpdateCategoryResponse>(model);
         return Ok(response);
     }
     
@@ -79,6 +79,6 @@ public class CategoriesController: ControllerBase
     public async Task<IActionResult> Delete([FromRoute] Guid id, CancellationToken token = default)
     {
         var result = await _categoryService.DeleteByIdAsync(id, token);
-        return result ? Ok() : NotFound();
+        return result ? NoContent() : NotFound();
     }
 }

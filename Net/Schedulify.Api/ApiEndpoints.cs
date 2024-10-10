@@ -8,7 +8,7 @@ public static class ApiEndpoints
     {
         private const string Base = $"{ApiBase}/calendars";
         
-        public const string Get = $"{Base}/{{id:guid}}";
+        public const string GetById = $"{Base}/{{id:guid}}";
         public const string GetByUser = $"{Base}/user"; //OPTIONAL ID ELSE GET FROM JWS
         public const string Create = Base;
         public const string Update = $"{Base}/{{id:guid}}";
@@ -19,7 +19,7 @@ public static class ApiEndpoints
     {
         private const string Base = $"{ApiBase}/categories";
         
-        public const string Get = $"{Base}/{{id:guid}}";
+        public const string GetById = $"{Base}/{{id:guid}}";
         public const string GetByUser = $"{Base}/user"; //OPTIONAL ID ELSE GET FROM JWS
         public const string Create = Base;
         public const string Update = $"{Base}/{{id:guid}}";
@@ -30,7 +30,7 @@ public static class ApiEndpoints
     {
         private const string Base = $"{ApiBase}/schedules";
         
-        public const string Get = $"{Base}/{{id:guid}}";
+        public const string GetById = $"{Base}/{{id:guid}}";
         public const string GetByUser = $"{Base}/user"; //OPTIONAL ID ELSE GET FROM JWS
         public const string Create = Base;
         public const string Update = $"{Base}/{{id:guid}}";
